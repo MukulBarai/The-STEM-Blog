@@ -11,5 +11,16 @@ def index(request):
 		'categories': categories,
 		'menus': menus
 	}
+	return render(request, 'index.html', context)
+
+def singlePost(request, id):
+	post = Post.objects.get(pk=id)
+	categories = Category.objects.all()
+	menus = Menu.objects.all()
+	context = {
+		'post': post, 
+		'categories': categories,
+		'menus': menus
+	}
 	return render(request, 
-		'index.html', context)
+		'posts/single.html', context)

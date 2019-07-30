@@ -6,31 +6,17 @@
     <div class="row">
       <!-- Blog Entries Column -->
       <div class="col-md-8 my-4">
-        {% for post in posts %}
-          <div class="card mb-4">
-            <img class="card-img-top" src="{{post.image}}" alt="Card image cap">
-            <div class="card-body">
-              <h2 class="card-title">{{post.title}}</h2>
-              <p class="card-text">{{post.content}}</p>
-              <a href="{% url 'singlepost' post.id %}" class="btn btn-primary">Read More &rarr;</a>
-            </div>
-            <div class="card-footer text-muted">
-              {{post.published}}
-              <a href="">{{post.author}}</a>
-            </div>
+        <div class="card mb-4">
+          <img class="card-img-top" src="{{post.image}}" alt="Card image cap">
+          <div class="card-body">
+            <h2 class="card-title">{{post.title}}</h2>
+            <p class="card-text">{{post.content}}</p>
           </div>
-        {% endfor %}
-
-        <!-- Pagination -->
-        <ul class="pagination justify-content-center mb-4">
-          <li class="page-item">
-            <a class="page-link" href="#">&larr; Older</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="#">Newer &rarr;</a>
-          </li>
-        </ul>
-
+          <div class="card-footer text-muted">
+            {{post.published}}
+            <a href="">{{post.author}}</a>
+          </div>
+        </div>
       </div>
 
       <!-- Sidebar Widgets Column -->
