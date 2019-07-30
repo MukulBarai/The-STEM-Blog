@@ -1,0 +1,23 @@
+/*!
+ * Start Bootstrap - Blog Home (https://startbootstrap.com/template-overviews/blog-home)
+ * Copyright 2013-2019 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-blog-home/blob/master/LICENSE)
+ */
+body {
+  padding-top: 56px;
+}
+
+.nav-link {
+	color: aqua!important;
+	font-weight: bold!important;
+}
+
+.navbar-brand {
+	font-size: 16px!important;
+	color: aqua!important;
+	font-weight: bold!important;
+}
+
+.navbar-brand:hover{
+	opacity: 1;
+}
