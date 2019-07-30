@@ -10,7 +10,7 @@
           <div class="card mb-4">
             <img class="card-img-top" src="{{post.image}}" alt="Card image cap">
             <div class="card-body">
-              <h2 class="card-title">Post Title</h2>
+              <h2 class="card-title">{{post.title}}</h2>
               <p class="card-text">{{post.content}}</p>
               <a href="#" class="btn btn-primary">Read More &rarr;</a>
             </div>
@@ -50,19 +50,15 @@
         </div>
 
         <!-- Popular posts -->
-        <div class="card my-4">
+        <div class="card my-4" style="max-height: 400px; overflow-y: scroll;">
           <h5 class="card-header">Popular Posts</h5>
           <div class="card-body">
             <ul class="list-group">
-              <li class="list-group-item">
-                something
-              </li>
-              <li class="list-group-item">
-                nothing
-              </li>
-              <li class="list-group-item">
-                interesting
-              </li>
+              {% for category in categories %}
+                <li class="list-group-item">
+                  {{category.name}}
+                </li>
+              {% endfor %}
             </ul>
           </div>
         </div>
