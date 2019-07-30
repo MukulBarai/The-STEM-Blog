@@ -21,3 +21,15 @@ body {
 .navbar-brand:hover{
 	opacity: 1;
 }
+
+.navbar{
+	border-bottom: 5px solid blue;
+}
+
+footer{
+	border-top: 5px solid blue;
+}
+
+.nav-item{
+	margin-top: 1px solid blue!important;
+}
