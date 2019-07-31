@@ -11,22 +11,17 @@ body {
 	border-radius: 0!important;
 }
 
-.nav-link {
+.navbar-bottom .nav-link {
 	color: aqua!important;
 	font-weight: bold!important;
 }
 
-.navbar-brand {
-	font-size: 16px!important;
-	color: aqua!important;
+.navbar-top .nav-link {
+	color: red!important;
 	font-weight: bold!important;
 }
 
-.navbar-brand:hover{
-	opacity: 1;
-}
-
-.navbar{
+.navbar-bottom{
 	border-bottom: 5px solid blue;
 }
 
@@ -56,20 +51,4 @@ footer{
 .nav-left li a:hover{
 	background: #6c757d;
 	color: white!important;
-}
-
-.dropdown-menu{
-	background: #343a40!important;
-	transition: all 1s;
-	padding-left: -5px;
-}
-
-.dropdown-menu a{
-	color: aqua!important;
-	font-weight: bold!important;
-	transition: all 1s;
-}
-
-.dropdown-menu a:hover{
-	background: none!important;
 }
