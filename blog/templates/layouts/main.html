@@ -24,9 +24,9 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-              {% for category in categories %}
-                <li class="nav-item active">
-                  <a class="nav-link text-uppercase" href="{% url 'category' category=category %}">{{category.name}}</a>
+              {% for menu in menus %}
+                <li class="nav-item"> 
+                  <a class="nav-link text-uppercase" href="">{{menu}}</a>
                 </li>
               {% endfor %}
               {% if user.is_authenticated %}

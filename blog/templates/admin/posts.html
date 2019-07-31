@@ -1,7 +1,9 @@
 {% extends 'admin/home.html' %}
 
 {% block content %}
-    <h4><a class="btn btn-sm btn-secondary text-white">{{posts|length}} posts</a> <a href="{% url 'newpost' %}" class="btn btn-sm btn-outline-secondary">Add New</a></h4>
+    <div class="clearfix">
+      <h5 class="text-secondary" href="{% url 'posts' %}">Posts({{posts|length}})</h5>
+    </div>
     <div class="card mb-4">
         <table class="table">
           <tr class="mb-1">
