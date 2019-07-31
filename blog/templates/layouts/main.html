@@ -16,7 +16,7 @@
   <body>
     <header class="clearfix">
       <!-- Navigation -->
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
           <a class="navbar-brand font-bold" href="{% url 'index' %}">MYBLOG</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,9 +24,9 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-              {% for menu in menus %}
+              {% for category in categories %}
                 <li class="nav-item"> 
-                  <a class="nav-link text-uppercase" href="">{{menu}}</a>
+                  <a class="nav-link text-uppercase" href="{% url 'category' category=category %}">{{category.name}}</a>
                 </li>
               {% endfor %}
               {% if user.is_authenticated %}

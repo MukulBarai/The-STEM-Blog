@@ -3,15 +3,9 @@ from django.contrib.auth.models import User
 from datetime import datetime, date
 
 
-class Menu(models.Model):
-	title = models.CharField(max_length=100)
-	def __str__(self): return self.title
-
 class Category(models.Model):
 	name = models.CharField(max_length=100)
 	def __str__(self): return self.name
-	menu = models.ForeignKey(Menu,
-		on_delete=models.CASCADE, null=True)
 
 class Tag(models.Model):
 	name = models.CharField(max_length=100)

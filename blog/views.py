@@ -1,26 +1,22 @@
 from django.shortcuts import render, redirect
-from .models import Post, Category, Menu
+from .models import Post, Category
 # Create your views here.
 
 def index(request):
 	posts = Post.objects.all()
 	categories = Category.objects.all()
-	menus = Menu.objects.all()
 	context = {
 		'posts': posts, 
 		'categories': categories,
-		'menus': menus
 	}
 	return render(request, 'index.html', context)
 
 def singlePost(request, id):
 	post = Post.objects.get(pk=id)
 	categories = Category.objects.all()
-	menus = Menu.objects.all()
 	context = {
 		'post': post, 
 		'categories': categories,
-		'menus': menus
 	}
 	return render(request, 
 		'posts/single.html', context)
@@ -30,11 +26,9 @@ def siteAdmin(request):
 		return redirect('index')
 	posts = Post.objects.all()
 	categories = Category.objects.all()
-	menus = Menu.objects.all()
 	context = {
 		'posts': posts, 
 		'categories': categories,
-		'menus': menus
 	}
 	return render(request, 'admin/posts.html', context)
 
@@ -43,11 +37,9 @@ def posts(request):
 		return redirect('index')
 	posts = Post.objects.all()
 	categories = Category.objects.all()
-	menus = Menu.objects.all()
 	context = {
 		'posts': posts, 
 		'categories': categories,
-		'menus': menus
 	}
 	return render(request, 
 		'admin/posts.html', context)
@@ -56,11 +48,9 @@ def newPost(request):
 		return redirect('index')
 	posts = Post.objects.all()
 	categories = Category.objects.all()
-	menus = Menu.objects.all()
 	context = {
 		'posts': posts, 
 		'categories': categories,
-		'menus': menus
 	}
 	return render(request, 'posts/newpost.html', context)
 
@@ -68,10 +58,8 @@ def categoryPosts(request, category):
 	category = Category.objects.get(name=category)
 	posts = Post.objects.filter(category=category.id)
 	categories = Category.objects.all()
-	menus = Menu.objects.all()
 	context = {
 		'posts': posts, 
 		'categories': categories,
-		'menus': menus
 	}
 	return render(request, 'index.html', context)
