@@ -1,10 +1,15 @@
-/*!
- * Start Bootstrap - Blog Home (https://startbootstrap.com/template-overviews/blog-home)
- * Copyright 2013-2019 Start Bootstrap
- * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-blog-home/blob/master/LICENSE)
- */
+
 body {
   padding-top: 56px;
+  background: #f1f1f1;
+}
+
+.container.main{
+	min-height: 100vh;
+}
+
+*{
+	border-radius: 0!important;
 }
 
 .nav-link {
@@ -28,4 +33,28 @@ body {
 
 footer{
 	border-top: 5px solid blue;
+}
+
+.sidebar .card{
+	border-top: 5px solid blue!important;
+}
+
+.list-group-item{
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-bottom: 2px;
+}
+
+.nav-left li{
+	border-bottom: 2px solid #f1f1f1;
+}
+
+.nav-left li a{
+	color: #4e6f6f!important;
+	transition: all 0.5s;
+}
+
+.nav-left li a:hover{
+	background: black;
+	color: white!important;
 }

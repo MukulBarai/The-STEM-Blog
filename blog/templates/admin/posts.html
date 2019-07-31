@@ -1,0 +1,27 @@
+{% extends 'admin/home.html' %}
+
+{% block content %}
+    <h4>Post: <a href="{% url 'newpost' %}" class="btn btn-sm btn-outline-secondary">Add New</a></h4>
+    <div class="card mb-4">
+        <table class="table">
+          <tr class="mb-1">
+            <td><input type="checkbox" name=""></td>
+            <td>Title</td>
+            <td>Author</td>
+            <td>Tags</td>
+            <td>Category</td>
+            <td class="text-right">Published</td>
+          </tr>
+          {% for post in posts %}
+          <tr class="mb-1">
+            <td><input type="checkbox" name=""></td>
+            <td>{{post.title}}</td>
+            <td>{{post.author}}</td>
+            <td>{{post.tags}}</td>
+            <td>{{post.category}}</td>
+            <td class="text-right">{{post.published}}</td>
+          </tr>
+          {% endfor %}
+        </table>
+    </div>
+{% endblock %}

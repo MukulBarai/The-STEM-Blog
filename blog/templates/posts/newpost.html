@@ -1,0 +1,33 @@
+{% extends 'admin/home.html' %}
+
+{% block content %}
+    <div class="card mb-4">
+      <h4 class="card-header">New Post</h4>
+      <div class="card-body">
+        <form>
+          <div class="form-group">
+            <textarea name="content" class="form-control" required=""></textarea>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" name="title" required="">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" name="image">
+          </div>
+          <div class="form-group">
+            <select class="form-control">
+              {% for category in categories %}
+                <option>{{category.name}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" name="tags">
+          </div>
+          <div class="form-group">
+            <input type="date" class="form-control" disabled="" name="date">
+          </div>
+        </form>
+      </div>
+    </div>
+{% endblock %}
