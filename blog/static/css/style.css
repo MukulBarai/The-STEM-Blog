@@ -55,6 +55,6 @@ footer{
 }
 
 .nav-left li a:hover{
-	background: black;
+	background: #6c757d;
 	color: white!important;
 }

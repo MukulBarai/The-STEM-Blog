@@ -6,5 +6,6 @@ urlpatterns = [
 	path('posts/<int:id>/', views.singlePost, name='singlepost'),
 	path('site/admin/', views.siteAdmin, name='siteadmin'),
 	path('site/admin/posts/', views.posts, name='posts'),
-	path('site/admin/posts/new', views.newPost, name='newpost')
+	path('site/admin/posts/new', views.newPost, name='newpost'),
+	path('posts/<str:category>/', views.categoryPosts, name='category'),
 ]

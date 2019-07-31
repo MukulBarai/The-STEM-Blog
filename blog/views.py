@@ -63,3 +63,15 @@ def newPost(request):
 		'menus': menus
 	}
 	return render(request, 'posts/newpost.html', context)
+
+def categoryPosts(request, category):
+	category = Category.objects.get(name=category)
+	posts = Post.objects.filter(category=category.id)
+	categories = Category.objects.all()
+	menus = Menu.objects.all()
+	context = {
+		'posts': posts, 
+		'categories': categories,
+		'menus': menus
+	}
+	return render(request, 'index.html', context)
