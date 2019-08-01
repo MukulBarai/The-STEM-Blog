@@ -5,6 +5,7 @@
         <table class="table">
           <tr class="mb-1">
             <td>Title</td>
+            <td>Edit</td>
             <td>Author</td>
             <td>Tags</td>
             <td>Category</td>
@@ -13,6 +14,7 @@
           {% for post in posts %}
           <tr class="mb-1">
             <td>{{post.title}}</td>
+            <td><a href="" class="btn btn-sm btn-outline-secondary">Edit</a></td>
             <td>{{post.author}}</td>
             <td>{{post.tags}}</td>
             <td>{{post.category}}</td>

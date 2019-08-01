@@ -4,28 +4,17 @@
     <div class="card mb-4">
       <h4 class="card-header">New Post</h4>
       <div class="card-body">
-        <form>
+        <form method="post" action="{% url 'newpost' %}">
+          {% csrf_token %}
+          {% for field in form %}
+            <div class="form-group">
+              <p class="mb-0">{{field.label}}: <span class="text-danger">{{field.errors|striptags}}</span></p>
+              {{field}}
+              <p class="mt-0 font-normal">{{field.help_text|striptags}}</p>
+            </div>
+          {% endfor %}
           <div class="form-group">
-            <textarea name="content" class="form-control" required=""></textarea>
-          </div>
-          <div class="form-group">
-            <input type="text" class="form-control" name="title" required="">
-          </div>
-          <div class="form-group">
-            <input type="text" class="form-control" name="image">
-          </div>
-          <div class="form-group">
-            <select class="form-control">
-              {% for category in categories %}
-                <option>{{category.name}}</option>
-              {% endfor %}
-            </select>
-          </div>
-          <div class="form-group">
-            <input type="text" class="form-control" name="tags">
-          </div>
-          <div class="form-group">
-            <input type="date" class="form-control" disabled="" name="date">
+            <input type="submit" class="form-control btn btn-secondary" name="Create">
           </div>
         </form>
       </div>
