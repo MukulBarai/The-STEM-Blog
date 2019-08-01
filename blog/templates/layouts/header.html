@@ -45,8 +45,7 @@
           <li class="nav-item">
             <a class="nav-link text-center" href="{% url 'logout' %}?next={% url 'index' %}"><i class="fa fa-sign-out"></i> LOGOUT</a>
           </li>
-        {% endif %}
-        {% if not user.is_authenticated %}
+        {% else %}
           <li class="nav-item">
             <a href="{% url 'login' %}?next=/site/admin" class="nav-link text-center"><i class="fa fa-sign-in"></i> LOGIN</a>
           </li>

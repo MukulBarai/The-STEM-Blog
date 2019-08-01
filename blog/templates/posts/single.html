@@ -27,8 +27,8 @@
               <p class="text-left flex-fill">Comment as
                 {% if user.is_authenticated %}
                   {{user}}
-                {% elif %}
-                  Guest
+                {% else %}
+                  <span>Guest</span>
                 {% endif %}
               </p>
               <p class="text-right flex-fill"><a href="" type="submit" class="btn btn-sm btn-success">Publish</a></p>

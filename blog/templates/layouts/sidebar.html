@@ -1,0 +1,96 @@
+  {% load static %}
+  <!-- Search Widget -->
+  <div class="card my-4">
+    <h5 class="card-header">Search</h5>
+    <div class="card-body">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search for...">
+        <span class="input-group-btn">
+          <button class="btn btn-secondary" type="button">Go!</button>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popular posts -->
+  <div class="card my-4">
+    <h5 class="card-header">Popular Posts</h5>
+    <div class="card-body" style="max-height: 400px; overflow-y: scroll;">
+      <div class="d-flex flex-column">
+        {% for post in popular %}
+          <a href="{% url 'singlepost' id=post.id %}" style="text-decoration: none;">
+            <div class="d-flex mb-2 p-2" style="background: #f1f1f1">
+              <div class="flex-fill d-flex align-items-center">
+                <img style="width: 100px; height: 60px;" src="{{post.image}}">
+              </div>
+              <div class="flex-fill d-flex ml-2 align-items-center text-secondary font-bold text-justify">
+                {{post.content|slice:':60'}}
+              </div>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Blog Archive -->
+  <div class="card my-4">
+    <h5 class="card-header">Archive</h5>
+    <div class="card-body">
+      <select class="form-control">
+        <option>All</option>
+        <option>January</option>
+        <option>February</option>
+        <option>March</option>
+        <option>April</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Categories Widget -->
+  <div class="card my-4">
+    <h5 class="card-header">Categories</h5>
+    <div class="card-body">
+      <ul class="list-group">
+        <li class="list-group-item">
+          <a href="#">Web Design</a>
+        </li>
+        <li class="list-group-item">
+          <a href="#">HTML</a>
+        </li>
+        <li class="list-group-item">
+          <a href="#">Freebies</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card my-4">
+    <h5 class="card-header">Tags</h5>
+    <div class="card-body">
+      <div class="d-flex flex-wrap align-content-around">
+        <a href="" class="btn btn-sm m-1 btn-outline-secondary">Electronics</a>
+        <a href="" class="btn btn-sm m-1 btn-outline-secondary">Mecanics</a>
+        <a href="" class="btn btn-sm m-1 btn-outline-secondary">Robotics</a>
+        <a href="" class="btn btn-sm m-1 btn-outline-secondary">Space</a>
+        <a href="" class="btn btn-sm m-1 btn-outline-secondary">Aeronautics</a>
+        <a href="" class="btn btn-sm m-1 btn-outline-secondary">Architecture</a>
+        <a href="" class="btn btn-sm m-1 btn-outline-secondary">Climate</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Side Widget -->
+  <div class="card my-4">
+    <h5 class="card-header">Follow By Email</h5>
+    <div class="card-body">
+      <p>Enter your email address to subscribe to this blog and
+       receive notifications of new posts by email.</p>
+       <div class="form-group">
+         <input type="text" class="form-control" name="email" placeholder="Your emil">
+       </div>
+       <div class="form-group">
+         <input type="submit" name="Subscribe" class="form-control btn btn-success">
+       </div>
+    </div>
+  </div>

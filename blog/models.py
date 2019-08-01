@@ -23,4 +23,5 @@ class Post(models.Model):
 		on_delete=models.CASCADE, related_name='category')
 	published = models.DateField(default=date.today)
 	tags = models.CharField(max_length=100, null=True)
+	views = models.IntegerField(default=0)
 	def __str__(self): return self.title

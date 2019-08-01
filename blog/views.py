@@ -5,19 +5,23 @@ from .forms import SignUpForm
 
 def index(request):
 	posts = Post.objects.all()
+	popular = Post.objects.order_by('-views')[:20]
 	categories = Category.objects.all()
 	context = {
 		'posts': posts, 
 		'categories': categories,
+		'popular': popular
 	}
 	return render(request, 'index.html', context)
 
 def singlePost(request, id):
 	post = Post.objects.get(pk=id)
+	popular = Post.objects.order_by('-views')[:20]
 	categories = Category.objects.all()
 	context = {
 		'post': post, 
 		'categories': categories,
+		'popular': popular
 	}
 	return render(request, 
 		'posts/single.html', context)
@@ -27,9 +31,11 @@ def siteAdmin(request):
 		return redirect('/admin?next=/site/admin')
 	posts = Post.objects.all()
 	categories = Category.objects.all()
+	popular = Post.objects.order_by('-views')[:20]
 	context = {
 		'posts': posts, 
 		'categories': categories,
+		'popular': popular
 	}
 	return render(request, 'admin/posts.html', context)
 
@@ -38,9 +44,11 @@ def posts(request):
 		return redirect('index')
 	posts = Post.objects.all()
 	categories = Category.objects.all()
+	popular = Post.objects.order_by('-views')[:20]
 	context = {
 		'posts': posts, 
 		'categories': categories,
+		'popular': popular
 	}
 	return render(request, 
 		'admin/posts.html', context)
@@ -49,19 +57,23 @@ def newPost(request):
 		return redirect('index')
 	posts = Post.objects.all()
 	categories = Category.objects.all()
+	popular = Post.objects.order_by('-views')[:20]
 	context = {
 		'posts': posts, 
 		'categories': categories,
+		'popular': popular
 	}
 	return render(request, 'posts/newpost.html', context)
 
 def categoryPosts(request, category):
 	category = Category.objects.get(name=category)
 	posts = Post.objects.filter(category=category.id)
+	popular = Post.objects.order_by('-views')[:20]
 	categories = Category.objects.all()
 	context = {
 		'posts': posts, 
 		'categories': categories,
+		'popular': popular
 	}
 	return render(request, 'index.html', context)
 
