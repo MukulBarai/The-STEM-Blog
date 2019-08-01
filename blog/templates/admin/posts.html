@@ -1,13 +1,9 @@
 {% extends 'admin/home.html' %}
 
 {% block content %}
-    <div class="clearfix">
-      <h5 class="text-secondary" href="{% url 'posts' %}">Posts({{posts|length}})</h5>
-    </div>
     <div class="card mb-4">
         <table class="table">
           <tr class="mb-1">
-            <td><input type="checkbox" name=""></td>
             <td>Title</td>
             <td>Author</td>
             <td>Tags</td>
@@ -16,7 +12,6 @@
           </tr>
           {% for post in posts %}
           <tr class="mb-1">
-            <td><input type="checkbox" name=""></td>
             <td>{{post.title}}</td>
             <td>{{post.author}}</td>
             <td>{{post.tags}}</td>
