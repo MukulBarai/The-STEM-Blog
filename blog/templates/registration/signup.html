@@ -7,7 +7,7 @@
 				<div class="card">
 					<h4 class="text-secondary card-header">Log in</h4>
 					<div class="card-body">
-						<form method="post" accept="{% url 'login' %}?next=/site/admin">
+						<form method="post" accept="{% url 'signup' %}?next=/site/admin">
 							{% csrf_token %}
 							<div class="form-group">
 								<input type="text" class="form-control" name="username">
