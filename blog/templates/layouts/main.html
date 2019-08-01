@@ -3,71 +3,15 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Blog Home - Start Bootstrap Template</title>
-    <!-- Bootstrap core CSS -->
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="{% static 'css/style.css' %}" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    {% include 'layouts/head.html' %}
   </head>
   <body>
     <header>
-      <nav class="navbar-top mb-0">
-        <ul class="d-flex justify-content-between container px-0 mb-0">
-          <li class="nav-item list-unstyled">
-            <a class="nav-link" href="{% url 'index' %}">MYBLOG</a>
-          </li>
-          <li class="list-unstyled">
-            <ul class="d-flex">
-              <li class="nav-item list-unstyled">
-                <a href="" class="nav-link"><i class="fa fa-facebook-square"></i></a>
-              </li>
-              <li class="nav-item list-unstyled">
-                <a href="" class="nav-link"><i class="fa fa-twitter-square"></i></a>
-              </li>
-              <li class="nav-item list-unstyled">
-                <a href="" class="nav-link"><i class="fa fa-youtube-square"></i></a>
-              </li>
-              <li class="nav-item list-unstyled">
-                <a href="" class="nav-link"><i class="fa fa-instagram"></i></a>
-              </li>
-              <li class="nav-item list-unstyled">
-                <a class="nav-link toggler" href="#" data-target="#navbardrop" data-toggle="collapse">
-                  <i class="fa fa-caret-down"></i>
-                </a>
-              </li>
-            </ul>
-          </li>
-        </ul> 
-      </nav>
-      <nav class="navbar pb-0 navbar-bottom navbar-expand-md bg-dark navbar-dark">
-        <div class="container">
-          <div class="collapse navbar-collapse justify-content-center" id="navbardrop">
-            <ul class="navbar-nav flex-wrap">
-              {% for category in categories %}
-                <li class="nav-item">  
-                  <a class="nav-link text-uppercase text-center" href="{% url 'category' category=category %}">{{category.name}}</a>
-                </li>
-              {% endfor %}
-            </ul>
-          </div>
-        </div>
-      </nav>
+      {% include 'layouts/header.html' %}
     </header>
     {% block main %}
     {% endblock %}
     <!-- Footer -->
-    <footer class="py-5 bg-dark" style="position: static; bottom: 0">
-      <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
-      </div>
-      <!-- /.container -->
-    </footer> 
-    <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    {% include 'layouts/footer.html' %}
   </body>
 </html>

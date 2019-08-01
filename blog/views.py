@@ -23,7 +23,7 @@ def singlePost(request, id):
 
 def siteAdmin(request):
 	if not request.user.is_authenticated:
-		return redirect('index')
+		return redirect('/admin?next=/site/admin')
 	posts = Post.objects.all()
 	categories = Category.objects.all()
 	context = {

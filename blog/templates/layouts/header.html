@@ -1,0 +1,49 @@
+<nav class="navbar-top mb-0">
+  <ul class="d-flex justify-content-between container px-0 mb-0">
+    <li class="nav-item list-unstyled">
+      <a class="nav-link" href="{% url 'index' %}">MYBLOG</a>
+    </li>
+    <li class="list-unstyled">
+      <ul class="d-flex">
+        <li class="nav-item list-unstyled">
+          <a href="" class="nav-link"><i class="fa fa-facebook-square"></i></a>
+        </li>
+        <li class="nav-item list-unstyled">
+          <a href="" class="nav-link"><i class="fa fa-twitter-square"></i></a>
+        </li>
+        <li class="nav-item list-unstyled">
+          <a href="" class="nav-link"><i class="fa fa-youtube-square"></i></a>
+        </li>
+        <li class="nav-item list-unstyled">
+          <a href="" class="nav-link"><i class="fa fa-instagram"></i></a>
+        </li>
+        <li class="nav-item list-unstyled">
+          <a class="nav-link toggler" href="#" data-target="#navbardrop" data-toggle="collapse">
+            <i class="fa fa-caret-down"></i>
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul> 
+</nav>
+<nav class="navbar py-0 navbar-bottom navbar-expand-md bg-dark navbar-dark">
+  <div class="container">
+    <div class="collapse py-1 navbar-collapse justify-content-center" id="navbardrop">
+      <ul class="navbar-nav flex-wrap">
+        {% for category in categories %}
+          <li class="nav-item">  
+            <a class="nav-link text-uppercase text-center" href="{% url 'category' category=category %}">{{category.name}}</a>
+          </li>
+        {% endfor %}
+        {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link text-center" href="{% url 'siteadmin' %}">ADMIN</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-center" href="{% url 'logout' %}">LOGOUT</a>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
