@@ -14,15 +14,21 @@ body {
 .navbar-bottom .nav-link {
 	color: aqua!important;
 	font-weight: bold!important;
+	font-size: 12px;
+}
+
+.navbar-top{
+	background: rgba(63, 63, 171, 0.75);
 }
 
 .navbar-top .nav-link {
-	color: red!important;
+	color: #20d26f!important;
 	font-weight: bold!important;
+	font-size: 20px;
 }
 
-.navbar-bottom{
-	border-bottom: 5px solid blue;
+.nav-item .toggler{
+	color: red!important;
 }
 
 footer{
