@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth import login, logout, authenticate
 from .models import Post, Category
-# Create your views here.
+from .forms import SignUpForm
 
 def index(request):
 	posts = Post.objects.all()
@@ -63,3 +64,21 @@ def categoryPosts(request, category):
 		'categories': categories,
 	}
 	return render(request, 'index.html', context)
+
+def signup(request):
+	if request.user.is_authenticated: 
+		return redirect('index')
+	if request.method == 'GET':
+		form = SignUpForm()
+		context = {'form': form}
+		return render(request, 'registration/signup.html', context)
+	form = SignUpForm(request.POST)
+	if not form.is_valid():
+		context = {'form': form}
+		return render(request, 'registration/signup.html', context)
+	form.save()
+	username = form.cleaned_data.get('username')
+	password = form.cleaned_data.get('password1')
+	user = authenticate(username=username, password=password)
+	login(request, user)
+	return redirect('index')

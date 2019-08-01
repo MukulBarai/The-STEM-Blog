@@ -28,8 +28,11 @@
 </nav>
 <nav class="navbar py-0 navbar-bottom navbar-expand-md bg-dark navbar-dark">
   <div class="container">
-    <div class="collapse py-1 navbar-collapse justify-content-center" id="navbardrop">
-      <ul class="navbar-nav flex-wrap">
+    <div class="collapse py-1 navbar-collapse" id="navbardrop">
+      <ul class="navbar-nav flex-wrap flex-row justify-content-between container-fluid">
+        <li class="nav-item">
+          <a class="nav-link text-center" href="{% url 'index' %}">HOME</a>
+        </li>
         {% for category in categories %}
           <li class="nav-item">  
             <a class="nav-link text-uppercase text-center" href="{% url 'category' category=category %}">{{category.name}}</a>

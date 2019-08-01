@@ -9,15 +9,16 @@
 					<div class="card-body">
 						<form method="post" accept="{% url 'signup' %}?next=/site/admin">
 							{% csrf_token %}
+							{% for field in form %}
+								<div class="form-group">
+									<p class="mb-0 text-secondary font-bold">{{field.label}}: <span class="text-danger">{{field.errors|striptags}}</span></p>
+									{{field}}
+									<p class="mt-0 font-normal">{{field.help_text|striptags}}</p>
+								</div>
+							{% endfor %}
 							<div class="form-group">
-								<input type="text" class="form-control" name="username">
-							</div>
-							<div class="form-group">
-								<input type="password" class="form-control" name="password">
-							</div>
-							<div class="form-group">
-								<input type="submit" class="form-control btn btn-secondary" name="Log in">
-							</div>
+	              <input type="submit" name="Signup" class="form-control btn-dark"> 
+	            </div>
 						</form>
 					</div>
 				</div>
