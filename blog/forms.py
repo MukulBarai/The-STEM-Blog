@@ -16,21 +16,7 @@ class SignUpForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = (
-        	'username', 'first_name', 'last_name', 
-        	'email', 'password1', 'password2', 
-        )
+        fields = ('username', 'first_name', 'last_name', 
+        'email', 'password1', 'password2', )
 
-
-class PostForm(ModelForm):
-    content = forms.CharField(
-        max_length=1000,
-        widget=forms.Textarea(attrs={'row': '2'})
-    )
-    class Meta:
-        model = Post
-        fields = (
-            'content', 'title', 
-            'image', 'category', 'tags'
-        )
  

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from .models import Post, Category
-from .forms import SignUpForm, PostForm
+from .forms import SignUpForm
 from django import forms
 import json
 
@@ -30,7 +30,7 @@ def singlePost(request, id):
 
 def siteAdmin(request):
 	if not request.user.is_authenticated:
-		return redirect('/admin?next=/site/admin')
+		return redirect('/admin/login/?next=/site/admin')
 	posts = Post.objects.all()
 	categories = Category.objects.all()
 	popular = Post.objects.order_by('-views')[:20]
@@ -54,41 +54,6 @@ def posts(request):
 	}
 	return render(request, 
 		'admin/posts.html', context)
-def newPost(request):
-	if not request.user.is_authenticated:
-		return redirect('index')
-	posts = Post.objects.all()
-	categories = Category.objects.all()
-	popular = Post.objects.order_by('-views')[:20]
-	if request.method == 'GET':
-		form = PostForm()
-		context = {
-			'posts': posts, 
-			'categories': categories,
-			'popular': popular,
-			'form': form
-		}
-		return render(request, 'posts/newpost.html', context)
-	form = PostForm(request.POST)
-	if not form.is_valid():
-		context = {
-		'posts': posts, 
-		'categories': categories,
-		'popular': popular,
-		'form': form
-		}
-		return render(request, 'posts/newpost.html', context)
-	post = form.save(commit=False)
-	post.author = request.user
-	post.save()
-	posts = Post.objects.all()
-	context = {
-		'posts': posts, 
-		'categories': categories,
-		'popular': popular,
-		'form': form
-	}
-	return redirect('posts') 
 
 def categoryPosts(request, category):
 	category = Category.objects.get(name=category)
@@ -109,7 +74,6 @@ def signup(request):
 	if request.method == 'GET':
 		form = SignUpForm()
 		context = {'form': form, 'categories': categories}
-		print(categories)
 		return render(request, 'registration/signup.html', context)
 	form = SignUpForm(request.POST)
 	if not form.is_valid():
@@ -121,3 +85,16 @@ def signup(request):
 	user = authenticate(username=username, password=password)
 	login(request, user)
 	return redirect('index')
+
+def settings(request):
+	if not request.user.is_authenticated:
+		return redirect('/accounts/login/?next=/settings')
+	posts = Post.objects.all()
+	popular = Post.objects.order_by('-views')[:20]
+	categories = Category.objects.all()
+	context = {
+		'posts': posts, 
+		'categories': categories,
+		'popular': popular
+	}
+	return render(request, 'settings.html', context)

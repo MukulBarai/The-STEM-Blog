@@ -18,11 +18,11 @@ body {
 }
 
 .navbar-top{
-	background: rgba(51, 210, 202, 0.75);
+	background: #417690;
 }
 
 .navbar-top .nav-link {
-	color: blue!important;
+	color: #6df14c!important;
 	font-weight: bold!important;
 	font-size: 16px;
 }

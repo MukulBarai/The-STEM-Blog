@@ -49,19 +49,22 @@
 
   <!-- Categories Widget -->
   <div class="card my-4">
-    <h5 class="card-header">Categories</h5>
-    <div class="card-body">
-      <ul class="list-group">
-        <li class="list-group-item">
-          <a href="#">Web Design</a>
-        </li>
-        <li class="list-group-item">
-          <a href="#">HTML</a>
-        </li>
-        <li class="list-group-item">
-          <a href="#">Freebies</a>
-        </li>
-      </ul>
+    <h5 class="card-header">Recent Posts</h5>
+    <div class="card-body" style="max-height: 400px; overflow-y: scroll;">
+      <div class="d-flex flex-column">
+        {% for post in popular %}
+          <a href="{% url 'singlepost' id=post.id %}" style="text-decoration: none;">
+            <div class="d-flex mb-2 p-2" style="background: #f1f1f1">
+              <div class="flex-fill d-flex align-items-center">
+                <img style="width: 100px; height: 60px;" src="{{post.image}}">
+              </div>
+              <div class="flex-fill d-flex ml-2 align-items-center text-secondary font-bold text-justify">
+                {{post.content|slice:':60'}}
+              </div>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
     </div>
   </div>
 

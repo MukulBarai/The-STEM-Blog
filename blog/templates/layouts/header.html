@@ -19,7 +19,7 @@
             <a href="" class="nav-link"><i class="fa fa-instagram"></i></a>
           </li>
           <li class="nav-item list-unstyled">
-            <a class="nav-link toggler" href="#" data-target="#navbardrop" data-toggle="collapse">
+            <a class="nav-link" href="#" data-target="#navbardrop" data-toggle="collapse">
               <i class="fa fa-caret-down"></i>
             </a>
           </li>
@@ -31,7 +31,7 @@
 <nav class="navbar py-0 navbar-bottom navbar-expand-md bg-dark navbar-dark">
   <div class="container"> 
     <div class="collapse py-1 navbar-collapse" id="navbardrop">
-      <ul class="navbar-nav flex-wrap flex-row justify-content-between container-fluid">
+      <ul class="navbar-nav flex-wrap px-1 flex-row justify-content-between container-fluid">
         <li class="nav-item">
           <a class="nav-link text-center" href="{% url 'index' %}"><i class="fa fa-home"></i> HOME</a>
         </li>
@@ -41,9 +41,6 @@
           </li>
         {% endfor %}
         {% if user.is_authenticated %}
-          <li class="nav-item">
-            <a class="nav-link text-center" href="{% url 'siteadmin' %}"><i class="fa fa-user"></i> ADMIN</a>
-          </li>
           <li class="nav-item">
             <a class="nav-link text-center" href="{% url 'logout' %}?next={% url 'index' %}"><i class="fa fa-sign-out"></i> LOGOUT</a>
           </li>
