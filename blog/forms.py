@@ -25,13 +25,8 @@ class SignUpForm(UserCreationForm):
 class PostForm(ModelForm):
     content = forms.CharField(
         max_length=1000,
-        widget=forms.Textarea(attrs={'row': '2'}),
-        label='Post Content'
+        widget=forms.Textarea(attrs={'row': '2'})
     )
-    title = forms.CharField(max_length=100, 
-        label='Post Title')
-    image = forms.CharField(max_length=1000,
-        label='Image Url')
     class Meta:
         model = Post
         fields = (

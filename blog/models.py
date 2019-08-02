@@ -14,13 +14,12 @@ class Tag(models.Model):
 
 class Post(models.Model):
 	content = models.CharField(max_length=1000)
-	title = models.CharField(max_length=100, 
-		default='The title goes here')
+	title = models.CharField(max_length=100)
 	author = models.ForeignKey(User, 
-		on_delete=models.CASCADE,related_name='post')
+		on_delete=models.CASCADE,related_name='posts')
 	image = models.CharField(max_length=1000)
 	category = models.ForeignKey(Category,
-		on_delete=models.CASCADE, related_name='category')
+		on_delete=models.CASCADE, related_name='posts')
 	published = models.DateField(default=date.today)
 	tags = models.CharField(max_length=100, null=True)
 	views = models.IntegerField(default=0)
