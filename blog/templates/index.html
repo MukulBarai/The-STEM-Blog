@@ -14,9 +14,17 @@
               <p class="card-text">{{post.content}}</p>
               <a href="{% url 'singlepost' post.id %}" class="btn btn-primary">Read More &rarr;</a>
             </div>
-            <div class="card-footer text-muted">
-              {{post.published}}
-              <a href="">{{post.author}}</a>
+            <div class="card-footer">
+              <span><i class="fal fa-clock"></i>{{post.published}}</span>
+              <span>
+                <a href=""><i class="fa fa-user"></i> {{post.author}}</a>
+              </span>
+              <span>
+                {% for tag in post.tags.all %}
+                  <span class="font-bold">.</span>
+                  <a href="">{{tag.name}}</a>
+                {% endfor %}
+              </span>
             </div>
           </div>
         {% endfor %}
