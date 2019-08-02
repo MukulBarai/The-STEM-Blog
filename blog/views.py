@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
-from .models import Post, Category
+from .models import Post, Category, Tag
 from .forms import SignUpForm
 from django import forms
 import json
@@ -9,10 +9,12 @@ def index(request):
 	posts = Post.objects.all()
 	popular = Post.objects.order_by('-views')[:20]
 	categories = Category.objects.all()
+	tags = Tag.objects.all()
 	context = {
 		'posts': posts, 
 		'categories': categories,
-		'popular': popular
+		'popular': popular,
+		'tags': tags
 	}
 	return render(request, 'index.html', context)
 
@@ -20,10 +22,12 @@ def singlePost(request, id):
 	post = Post.objects.get(pk=id)
 	popular = Post.objects.order_by('-views')[:20]
 	categories = Category.objects.all()
+	tags = Tag.objects.all()
 	context = {
 		'post': post, 
 		'categories': categories,
-		'popular': popular
+		'popular': popular,
+		'tags': tags
 	}
 	return render(request, 
 		'posts/single.html', context)
@@ -33,11 +37,13 @@ def siteAdmin(request):
 		return redirect('/admin/login/?next=/site/admin')
 	posts = Post.objects.all()
 	categories = Category.objects.all()
+	tags = Tag.objects.all()
 	popular = Post.objects.order_by('-views')[:20]
 	context = {
 		'posts': posts, 
 		'categories': categories,
-		'popular': popular
+		'popular': popular,
+		'tags': tags
 	}
 	return render(request, 'admin/posts.html', context)
 
@@ -45,12 +51,14 @@ def posts(request):
 	if not request.user.is_authenticated:
 		return redirect('index')
 	posts = Post.objects.all()
+	tags = Tag.objects.all()
 	categories = Category.objects.all()
 	popular = Post.objects.order_by('-views')[:20]
 	context = {
 		'posts': posts, 
 		'categories': categories,
-		'popular': popular
+		'popular': popular,
+		'tags': tags
 	}
 	return render(request, 
 		'admin/posts.html', context)
@@ -60,10 +68,12 @@ def categoryPosts(request, category):
 	posts = Post.objects.filter(category=category.id)
 	popular = Post.objects.order_by('-views')[:20]
 	categories = Category.objects.all()
+	tags = Tag.objects.all()
 	context = {
 		'posts': posts, 
 		'categories': categories,
-		'popular': popular
+		'popular': popular,
+		'tags': tags
 	}
 	return render(request, 'index.html', context)
 
@@ -90,11 +100,13 @@ def settings(request):
 	if not request.user.is_authenticated:
 		return redirect('/accounts/login/?next=/settings')
 	posts = Post.objects.all()
+	tags = Tag.objects.all()
 	popular = Post.objects.order_by('-views')[:20]
 	categories = Category.objects.all()
 	context = {
 		'posts': posts, 
 		'categories': categories,
-		'popular': popular
+		'popular': popular,
+		'tags': tags
 	}
 	return render(request, 'settings.html', context)

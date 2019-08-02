@@ -71,14 +71,10 @@
   <div class="card my-4">
     <h5 class="card-header">Tags</h5>
     <div class="card-body">
-      <div class="d-flex flex-wrap align-content-around">
-        <a href="" class="btn btn-sm m-1 btn-outline-secondary">Electronics</a>
-        <a href="" class="btn btn-sm m-1 btn-outline-secondary">Mecanics</a>
-        <a href="" class="btn btn-sm m-1 btn-outline-secondary">Robotics</a>
-        <a href="" class="btn btn-sm m-1 btn-outline-secondary">Space</a>
-        <a href="" class="btn btn-sm m-1 btn-outline-secondary">Aeronautics</a>
-        <a href="" class="btn btn-sm m-1 btn-outline-secondary">Architecture</a>
-        <a href="" class="btn btn-sm m-1 btn-outline-secondary">Climate</a>
+      <div class="d-flex flex-wrap justify-content-between">
+        {% for tag in tags %}
+          <a href="" class="btn btn-sm m-1 btn-outline-secondary">{{tag.name}}</a>
+        {% endfor %}
       </div>
     </div>
   </div>
