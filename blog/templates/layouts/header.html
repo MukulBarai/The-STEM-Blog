@@ -42,7 +42,7 @@
         {% endfor %}
         {% if user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link text-center" href="{% url 'profile' %}?next={% url 'index' %}"><i class="fa fa-user"></i> PROFILE</a>
+            <a class="nav-link text-center" href="{% url 'profile' %}"><i class="fa fa-user"></i> PROFILE</a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-center" href="{% url 'logout' %}?next={% url 'index' %}"><i class="fa fa-sign-out"></i> LOGOUT</a>

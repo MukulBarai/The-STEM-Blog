@@ -58,3 +58,14 @@ footer{
 	background: #6c757d;
 	color: white!important;
 }
+
+.form-control{
+	box-shadow: none!important;
+	border-radius: 5px!important;
+	font-size: 15px!important;
+	background: #e8f0fe;
+}
+
+input[type='submit']{
+	background: #417690!important;
+}

@@ -33,13 +33,15 @@
             </div>
             <div class="d-flex">
               <p class="text-left flex-fill">Comment as
-                {% if user.is_authenticated %}
-                  {{user}}
-                {% else %}
-                  <span>Guest</span>
-                {% endif %}
+                <span class="font-weight-bold">
+                  {% if user.is_authenticated %}
+                    {{user.username}}
+                  {% else %}
+                    Guest
+                  {% endif %}
+                </span>
               </p>
-              <p class="text-right flex-fill"><a href="" type="submit" class="btn btn-sm btn-success">Publish</a></p>
+              <p class="text-right flex-fill"><a href="" class="btn btn-sm btn-primary">Publish</a></p>
             </div>
           </div>
         </div>
@@ -49,7 +51,7 @@
             {% if post.comments.all|length %}
               {% for comment in post.comments.all %}
                 <div class="d-flex p-2 mb-2" style="background: #f1f1f1">
-                  <p class="mb-0 font-bold">{{comment.author}}: </p>
+                  <p class="mb-0 font-weight-bold pr-1">{{comment.author}}:</p>
                   <p class="mb-0">{{comment.content}}</p>
                 </div>
               {% endfor %}
