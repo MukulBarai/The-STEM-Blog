@@ -39,26 +39,6 @@ footer{
 	border-top: 5px solid blue!important;
 }
 
-.list-group-item{
-	padding-top: 5px;
-	padding-bottom: 5px;
-	margin-bottom: 2px;
-}
-
-.nav-left li{
-	border-bottom: 2px solid #f1f1f1;
-}
-
-.nav-left li a{
-	color: #4e6f6f!important;
-	transition: all 0.5s;
-}
-
-.nav-left li a:hover{
-	background: #6c757d;
-	color: white!important;
-}
-
 .form-control{
 	box-shadow: none!important;
 	border-radius: 5px!important;
