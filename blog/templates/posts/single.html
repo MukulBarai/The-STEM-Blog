@@ -43,98 +43,22 @@
             </div>
           </div>
         </div>
+        <div class="card mb-4 comments">
+          <h5 class="card-header">Top Comments</h5>
+          <div class="card-body d-flex flex-column">
+            {% for comment in post.comments.all %}
+              <div class="d-flex p-2 mb-2" style="background: #f1f1f1">
+                <p class="mb-0 font-bold">{{comment.author}}: </p>
+                <p class="mb-0">{{comment.content}}</p>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
       </div>
 
       <!-- Sidebar Widgets Column -->
       <div class="col-md-4">
-        <!-- Search Widget -->
-        <div class="card my-4">
-          <h5 class="card-header">Search</h5>
-          <div class="card-body">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search for...">
-              <span class="input-group-btn">
-                <button class="btn btn-secondary" type="button">Go!</button>
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Popular posts -->
-        <div class="card my-4" style="max-height: 400px; overflow-y: scroll;">
-          <h5 class="card-header">Popular Posts</h5>
-          <div class="card-body">
-            <ul class="list-group">
-              {% for category in categories %}
-                <li class="list-group-item">
-                  {{category.name}}
-                </li>
-              {% endfor %}
-            </ul>
-          </div>
-        </div>
-
-        <!-- Blog Archive -->
-        <div class="card my-4">
-          <h5 class="card-header">Archive</h5>
-          <div class="card-body">
-            <select class="form-control">
-              <option>All</option>
-              <option>January</option>
-              <option>February</option>
-              <option>March</option>
-              <option>April</option>
-            </select>
-          </div>
-        </div>
-
-        <!-- Categories Widget -->
-        <div class="card my-4">
-          <h5 class="card-header">Categories</h5>
-          <div class="card-body">
-            <ul class="list-group">
-              <li class="list-group-item">
-                <a href="#">Web Design</a>
-              </li>
-              <li class="list-group-item">
-                <a href="#">HTML</a>
-              </li>
-              <li class="list-group-item">
-                <a href="#">Freebies</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="card my-4">
-          <h5 class="card-header">Tags</h5>
-          <div class="card-body">
-            <div class="d-flex flex-wrap align-content-around">
-              <a href="" class="btn btn-sm m-1 btn-outline-secondary">Electronics</a>
-              <a href="" class="btn btn-sm m-1 btn-outline-secondary">Mecanics</a>
-              <a href="" class="btn btn-sm m-1 btn-outline-secondary">Robotics</a>
-              <a href="" class="btn btn-sm m-1 btn-outline-secondary">Space</a>
-              <a href="" class="btn btn-sm m-1 btn-outline-secondary">Aeronautics</a>
-              <a href="" class="btn btn-sm m-1 btn-outline-secondary">Architecture</a>
-              <a href="" class="btn btn-sm m-1 btn-outline-secondary">Climate</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Side Widget -->
-        <div class="card my-4">
-          <h5 class="card-header">Follow By Email</h5>
-          <div class="card-body">
-            <p>Enter your email address to subscribe to this blog and
-             receive notifications of new posts by email.</p>
-             <div class="form-group">
-               <input type="text" class="form-control" name="email" placeholder="Your emil">
-             </div>
-             <div class="form-group">
-               <input type="submit" name="Subscribe" class="form-control btn btn-success">
-             </div>
-          </div>
-        </div>
+        {% include 'layouts/sidebar.html' %}}
       </div>
     </div>
     <!-- /.row -->
