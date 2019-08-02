@@ -96,9 +96,9 @@ def signup(request):
 	login(request, user)
 	return redirect('index')
 
-def settings(request):
+def profile(request):
 	if not request.user.is_authenticated:
-		return redirect('/accounts/login/?next=/settings')
+		return redirect('/accounts/login/?next=/profile')
 	posts = Post.objects.all()
 	tags = Tag.objects.all()
 	popular = Post.objects.order_by('-views')[:20]
@@ -109,4 +109,4 @@ def settings(request):
 		'popular': popular,
 		'tags': tags
 	}
-	return render(request, 'settings.html', context)
+	return render(request, 'profile.html', context)

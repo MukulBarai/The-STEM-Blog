@@ -1,0 +1,33 @@
+{% extends 'layouts/main.html' %}
+
+{% block main %}
+  <!-- Page Content -->
+  <div class="container main">
+    <div class="row justify-content-center">
+      <!-- Blog Entries Column -->
+      <div class="col-md-8 my-4">
+          <div class="card mb-4">
+            <div class="card-body">
+              <table class="table table-bordered">
+                <tr>
+                  <td>Username</td>
+                  <td>{{user.username}}</td>
+                </tr>
+                  <td>Email</td>
+                  <td>{{user.email}}</td>
+                </tr>
+                  <td>Full Name</td>
+                  <td>{{user.get_full_name}}</td>
+                </tr>
+                  <td>Last Login</td>
+                  <td>{{user.last_login}}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+      </div>
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container -->
+{% endblock %}
