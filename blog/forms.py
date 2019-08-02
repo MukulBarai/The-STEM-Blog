@@ -19,4 +19,7 @@ class SignUpForm(UserCreationForm):
         fields = ('username', 'first_name', 'last_name', 
         'email', 'password1', 'password2', )
 
- 
+class LoginForm(forms.Form):
+    username = forms.CharField(max_length=30)
+    password = forms.CharField(max_length=30, 
+        widget=forms.PasswordInput)
