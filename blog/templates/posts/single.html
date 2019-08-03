@@ -12,24 +12,29 @@
             <h2 class="card-title">{{post.title}}</h2>
             <p class="card-text">{{post.content}}</p>
           </div>
-          <div class="card-footer">
-            <span><i class="fal fa-clock"></i>{{post.published}}</span>
-              <span>
-                <a href=""><i class="fa fa-user"></i> {{post.author}}</a>
-              </span>
-              <span>
-                {% for tag in post.tags.all %}
-                  <span class="font-bold">.</span>
-                  <a href="">{{tag.name}}</a>
-                {% endfor %}
-              </span>
+          <div class="card-footer d-flex">
+            <div class="mr-2">
+              <i class="fal fa-clock"></i>{{post.published}}
+            </div>
+            <div class="mr-2">
+              <a href=""><i class="fa fa-user"></i> {{post.author}}</a>
+            </div>
+            <div class="mr-2">
+              {% for tag in post.tags.all %}
+                <span class="font-bold">.</span>
+                <a href="">{{tag.name}}</a>
+              {% endfor %}
+            </div>
+            <div>
+              {{post.views}} views
+            </div>
           </div>
         </div>
         <div class="card mb-4">
           <h5 class="card-header">Comment</h5>
           <div class="card-body">
             <div class="form-group">
-              <textarea class="form-control" name="content" placeholder="Type your comment"></textarea>
+              <textarea class="form-control" name="content" required="" placeholder="Type your comment"></textarea>
             </div>
             <div class="d-flex">
               <p class="text-left flex-fill">Comment as

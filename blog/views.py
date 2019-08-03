@@ -12,6 +12,8 @@ def index(request):
 def singlePost(request, id):
 	context = request.context
 	post = Post.objects.get(pk=id)
+	post.views = post.views + 1
+	post.save()
 	context['post'] = post
 	return render(request, 
 		'posts/single.html', context)
