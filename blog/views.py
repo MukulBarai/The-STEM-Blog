@@ -52,12 +52,14 @@ def userSignup(request):
 	username = form.cleaned_data.get('username')
 	password = form.cleaned_data.get('password1')
 	user = authenticate(username=username, password=password)
+	if user == None:
+		context.form.non_field_errors = 'Cannot login new, please try again later'
+		return render(request, 'registration/signup.html', context)
 	login(request, user)
 	return redirect('index')
 
 def userLogin(request):
 	context = request.context
-	print(request.context)
 	if request.user.is_authenticated:
 		return redirect('index')
 	if request.method == 'GET':
@@ -71,6 +73,10 @@ def userLogin(request):
 	username = form.cleaned_data.get('username')
 	password = form.cleaned_data.get('password')
 	user = authenticate(username=username, password=password)
+	print(user)
+	if user == None:
+		context['errors'] = 'Username or Password is wrong'
+		return render(request, 'registration/login.html', context)
 	login(request, user)
 	return redirect('index')
 

@@ -1,4 +1,5 @@
 from .models import Post, Category, Tag
+from bs4 import BeautifulSoup
 
 def basicMiddleware(get_response):
     def middleware(request):
