@@ -52,7 +52,7 @@
     <h5 class="card-header">Recent Posts</h5>
     <div class="card-body" style="max-height: 400px; overflow-y: scroll;">
       <div class="d-flex flex-column">
-        {% for post in popular %}
+        {% for post in latests %}
           <a href="{% url 'singlepost' id=post.id %}" style="text-decoration: none;">
             <div class="d-flex mb-2 p-2" style="background: #f1f1f1">
               <div class="flex-fill d-flex align-items-center">
