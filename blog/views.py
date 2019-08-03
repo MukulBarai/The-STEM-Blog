@@ -3,7 +3,7 @@ from django.contrib.auth import login, logout, authenticate
 from .models import Post, Category, Tag
 from .forms import SignUpForm, LoginForm
 from django import forms
-import json
+from django.db.models import Q
 
 def index(request):
 	context = request.context
@@ -87,3 +87,10 @@ def profile(request):
 		return redirect('/accounts/login/?next=/profile')
 	context = request.context
 	return render(request, 'profile.html', context)
+
+def search(request):
+	context = request.context
+	word = request.GET['word']
+	posts = Post.objects.filter(Q(content__icontains=word) | Q(title__icontains=word)).order_by('-views')[:20]
+	context['posts'] = posts
+	return render(request, 'search.html', context)
