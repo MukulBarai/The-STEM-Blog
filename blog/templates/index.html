@@ -6,29 +6,36 @@
     <div class="row">
       <!-- Blog Entries Column -->
       <div class="col-md-8 my-4">
-        {% for post in posts %}
-          <div class="card mb-4">
-            <img class="card-img-top" style="max-height: 300px;" src="{{post.image}}" alt="Card image cap">
-            <div class="card-body">
-              <h2 class="card-title">{{post.title}}</h2>
-              <p class="card-text">{{post.content}}</p>
-              <a href="{% url 'singlepost' id=post.id %}" class="btn btn-primary">Read More &rarr;</a>
+        {% if posts %}
+          {% for post in posts %}
+            <div class="card mb-4">
+              <img class="card-img-top" style="max-height: 300px;" src="{{post.image}}" alt="Card image cap">
+              <div class="card-body">
+                <h2 class="card-title">{{post.title}}</h2>
+                <p class="card-text text-justify">{{post.content}}</p>
+                <a href="{% url 'singlepost' id=post.id %}" class="btn btn-primary">Read More &rarr;</a>
+              </div>
+              <div class="card-footer">
+                <span><i class="fal fa-clock"></i>{{post.published}}</span>
+                <span>
+                  <a href=""><i class="fa fa-user"></i> {{post.author}}</a>
+                </span>
+                <span>
+                  {% for tag in post.tags.all %}
+                    <span class="font-bold">.</span>
+                    <a href="">{{tag.name}}</a>
+                  {% endfor %}
+                </span>
+              </div>
             </div>
-            <div class="card-footer">
-              <span><i class="fal fa-clock"></i>{{post.published}}</span>
-              <span>
-                <a href=""><i class="fa fa-user"></i> {{post.author}}</a>
-              </span>
-              <span>
-                {% for tag in post.tags.all %}
-                  <span class="font-bold">.</span>
-                  <a href="">{{tag.name}}</a>
-                {% endfor %}
-              </span>
+          {% endfor %}
+        {% else %}
+          <div class="card mb-4">
+            <div class="card-body">
+              <h4 class="text-center">No posts found</h4>
             </div>
           </div>
-        {% endfor %}
-
+        {% endif %}
         <!-- Pagination -->
         <ul class="pagination justify-content-center mb-4">
           <li class="page-item">
@@ -41,7 +48,7 @@
       </div>
 
       <!-- Sidebar Widgets Column -->
-      <div class="col-md-4 sidebar">
+      <div class="col-md-4 sidebar my-4">
         {% include 'layouts/sidebar.html' %}
       </div>
     </div>

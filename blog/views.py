@@ -93,7 +93,7 @@ def search(request):
 	word = request.GET['word']
 	posts = Post.objects.filter(Q(content__icontains=word) | Q(title__icontains=word)).order_by('-views')[:20]
 	context['posts'] = posts
-	return render(request, 'search.html', context)
+	return render(request, 'index.html', context)
 
 def addComment(request, id):
 	context = request.context
