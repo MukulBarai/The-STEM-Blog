@@ -2,11 +2,15 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from .models import Post, Category, Tag, Comment
 from .forms import SignUpForm, LoginForm
+from django.core.paginator import Paginator
 from django import forms
 from django.db.models import Q
 
 def index(request):
 	context = request.context
+	page = request.GET.get('page', 1)
+	paginator = Paginator(context['posts'], 2)
+	context['posts'] = paginator.page(page)
 	return render(request, 'index.html', context)
 
 def singlePost(request, id):
