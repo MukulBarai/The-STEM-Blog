@@ -13,7 +13,7 @@
               <div class="card-body">
                 <h2 class="card-title">{{post.title}}</h2>
                 <p class="card-text text-justify">{{post.content}}</p>
-                <a href="{% url 'singlepost' id=post.id %}" class="btn btn-primary">Read More &rarr;</a>
+                <a href="{% url 'singlepost' id=post.id %}" class="btn bg-django">Read More &rarr;</a>
               </div>
               <div class="card-footer">
                 <span><i class="fal fa-clock"></i>{{post.published}}</span>

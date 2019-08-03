@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
       <div class="col-md-6 my-4">
         <div class="card">
-          <h4 class="text-white card-header" style="background: #417690">Sign Up</h4>
+          <h4 class="card-header bg-django">Sign Up</h4>
           <div class="card-body">
             {% if form.non_field_errors %}
               <p class="text-danger p-2 font-weight-bold" style="border: 1px solid red; border-radius: 5px!important;">{{form.non_field_errors}}</p>
@@ -14,12 +14,12 @@
               {% csrf_token %}
               {% for field in form %}
                 <div class="form-group">
-                  <p class="smb-0 text-secondary font-bold">{{field.label}}: <span class="text-danger">{{field.errors|striptags}}</span></p>
+                  <p class="mb-0 text-secondary font-bold">{{field.label}}: <span class="text-danger">{{field.errors|striptags}}</span></p>
                   {{field}}
                 </div>
               {% endfor %}
               <div class="form-group">
-                <input type="submit" name="Signup" class="form-control btn-dark"> 
+                <button type="submit" class="form-control bg-django">Sign Up</button> 
               </div>
             </form>
           </div>
