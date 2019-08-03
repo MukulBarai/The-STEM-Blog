@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
-from .models import Post, Category, Tag
+from .models import Post, Category, Tag, Comment
 from .forms import SignUpForm, LoginForm
 from django import forms
 from django.db.models import Q
@@ -94,3 +94,11 @@ def search(request):
 	posts = Post.objects.filter(Q(content__icontains=word) | Q(title__icontains=word)).order_by('-views')[:20]
 	context['posts'] = posts
 	return render(request, 'search.html', context)
+
+def addComment(request, id):
+	context = request.context
+	content = request.POST['content']
+	author = request.user if request.user.is_authenticated else 'Guest'
+	post = Post.objects.get(pk=id)
+	Comment.objects.create(content=content, author=author, post=post)
+	return redirect('singlepost', id=post.id)
