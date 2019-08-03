@@ -102,3 +102,10 @@ def addComment(request, id):
 	post = Post.objects.get(pk=id)
 	Comment.objects.create(content=content, author=author, post=post)
 	return redirect('singlepost', id=post.id)
+
+def tagPosts(request, tag):
+	context = request.context
+	tag = Tag.objects.get(name=tag)
+	posts = tag.posts.all()
+	context['posts'] = posts
+	return render(request, 'index.html', context)

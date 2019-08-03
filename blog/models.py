@@ -13,8 +13,8 @@ class Tag(models.Model):
 
 
 class Post(models.Model):
-	content = models.CharField(max_length=1000)
 	title = models.CharField(max_length=100)
+	content = models.CharField(max_length=1000)
 	author = models.ForeignKey(User, 
 		on_delete=models.CASCADE,related_name='posts')
 	image = models.CharField(max_length=1000)
