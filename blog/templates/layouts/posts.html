@@ -3,8 +3,8 @@
     <img class="card-img-top" style="max-height: 300px;" src="{{post.image}}" alt="Card image cap">
     <div class="card-body">
       <h2 class="card-title">{{post.title}}</h2>
-      <p class="card-text text-justify">{{post.content|slice:'0:400'}}</p>
-      <a href="{% url 'singlepost' id=post.id %}" class="btn bg-django">Read More &rarr;</a>
+      <p class="card-text text-justify">{{post.content|slice:'0:350'}}</p>
+      <p class="text-right"><a href="{% url 'singlepost' id=post.id %}" class="btn bg-django">Read More &rarr;</a></p>
     </div>
     <div class="card-footer d-flex">
       <div class="mr-2">

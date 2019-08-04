@@ -15,9 +15,14 @@ def index(request):
     context['title'] = 'The times blog'
     return render(request, 'index.html', context)
 
-def getRelatedPosts(tags):
-    posts = post.tags.all()
-    return posts + getRelatedPosts(tags)
+def getRelatedPosts(singlePost):
+    posts = []
+    for tag in singlePost.tags.all():
+        for post in tag.posts.all():
+            posts.append(post)
+    list(dict.fromkeys(posts))
+    posts.remove(singlePost)
+    return posts
 
 def singlePost(request, id):
     context = request.context
@@ -26,6 +31,7 @@ def singlePost(request, id):
     post.save()
     context['post'] = post
     context['title'] = post.title
+    context['relateds'] = getRelatedPosts(post)[0:5]
     return render(request, 'posts/single.html', context)
 
 def categoryPosts(request, category):

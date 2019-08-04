@@ -70,6 +70,38 @@
             {% endif %}
           </div>
         </div>
+        <div class="card my-4 alert-info">
+          <div class="card-body py-2">
+            <h4 class="text-center mb-0">Related posts</h4>
+          </div>
+        </div>
+        {% for post in relateds %}
+          <div class="card mb-4">
+            <img class="card-img-top" style="max-height: 300px;" src="{{post.image}}" alt="Card image cap">
+            <div class="card-body">
+              <h2 class="card-title">{{post.title}}</h2>
+              <p class="card-text text-justify">{{post.content|slice:'0:350'}}</p>
+              <p class="text-right"><a href="{% url 'singlepost' id=post.id %}" class="btn bg-django">Read More &rarr;</a></p>
+            </div>
+            <div class="card-footer d-flex">
+              <div class="mr-2">
+                <i class="far fa-clock"></i> {{post.published}}
+              </div>
+              <div class="mr-2">
+                <a href="{% url 'author' post.author %}"}><i class="fa fa-user"></i> {{post.author}}</a>
+              </div>
+              <div class="mr-2">
+                {% for tag in post.tags.all %}
+                  <span class="font-bold">.</span>
+                  <a href="{% url 'tags' tag.name %}">{{tag.name}}</a>
+                {% endfor %}
+              </div>
+              <div>
+                {{post.views}} views
+              </div>
+            </div>
+          </div>
+        {% endfor %}
       </div>
 
       <!-- Sidebar Widgets Column -->
