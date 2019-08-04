@@ -10,6 +10,11 @@
             <a class="nav-link text-uppercase text-center" href="{% url 'category' category=category %}"><i class="{{category.icon}}"></i> {{category.name}}</a>
           </li>
         {% endfor %}
+        {% if user.is_staff %}
+          <li class="nav-item">
+            <a class="nav-link text-center" href="/admin"><i class="fa fa-user"></i> ADMIN</a>
+          </li>
+        {% endif %}
         {% if user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link text-center" href="{% url 'profile' %}"><i class="fa fa-user"></i> PROFILE</a>

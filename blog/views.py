@@ -97,6 +97,18 @@ def userLogin(request):
 def profile(request):
     if not request.user.is_authenticated:
         return redirect('/accounts/login/?next=/profile')
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        user = User.objects.get(username=username)
+        user.username = username
+        user.email = email
+        user.first_name = first_name
+        user.last_name = last_name
+        user.save()
+        return redirect('profile')
     context = request.context
     context['title'] = 'Your profile'
     return render(request, 'profile.html', context)
