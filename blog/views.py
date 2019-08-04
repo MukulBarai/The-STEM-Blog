@@ -15,6 +15,10 @@ def index(request):
     context['title'] = 'The times blog'
     return render(request, 'index.html', context)
 
+def getRelatedPosts(tags):
+    posts = post.tags.all()
+    return posts + getRelatedPosts(tags)
+
 def singlePost(request, id):
     context = request.context
     post = get_object_or_404(Post, pk=id)
@@ -22,8 +26,7 @@ def singlePost(request, id):
     post.save()
     context['post'] = post
     context['title'] = post.title
-    return render(request, 
-        'posts/single.html', context)
+    return render(request, 'posts/single.html', context)
 
 def categoryPosts(request, category):
     context = request.context
