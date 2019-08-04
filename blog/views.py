@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, logout, authenticate
 from .models import Post, Category, Tag, Comment
 from .forms import SignUpForm, LoginForm
@@ -15,7 +15,7 @@ def index(request):
 
 def singlePost(request, id):
 	context = request.context
-	post = Post.objects.get(pk=id)
+	post = get_object_or_404(Post, pk=id)
 	post.views = post.views + 1
 	post.save()
 	context['post'] = post
@@ -37,11 +37,14 @@ def posts(request):
 
 def categoryPosts(request, category):
 	context = request.context
-	category = Category.objects.get(name=category)
-	posts = Post.objects.filter(category=category.id)
-	context['posts'] = posts
+	try:
+		category = Category.objects.get(name=category)
+	except Exception:
+		posts = []
+	else:
+		posts = Post.objects.filter(category=category)
 	page = request.GET.get('page', 1)
-	paginator = Paginator(context['posts'], 2)
+	paginator = Paginator(posts, 2)
 	context['posts'] = paginator.page(page)
 	context['category'] = category
 	return render(request, 'category.html', context)
@@ -110,14 +113,21 @@ def addComment(request, id):
 	context = request.context
 	content = request.POST['content']
 	author = request.user if request.user.is_authenticated else 'Guest'
-	post = Post.objects.get(pk=id)
+	try:
+		post = Post.objects.get(pk=id)
+	except Exception:
+		return redirect('singlepost', id=post.id)
 	Comment.objects.create(content=content, author=author, post=post)
 	return redirect('singlepost', id=post.id)
 
 def tagPosts(request, tag):
 	context = request.context
-	tag = Tag.objects.get(name=tag)
-	posts = tag.posts.all()
+	try:
+		tag = Tag.objects.get(name=tag)
+	except Exception:
+		posts = []
+	else:
+		posts = tag.posts.all()
 	page = request.GET.get('page', 1)
 	paginator = Paginator(posts, 2)
 	context['posts'] = paginator.page(page)
