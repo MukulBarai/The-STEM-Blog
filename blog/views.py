@@ -121,4 +121,5 @@ def tagPosts(request, tag):
 	page = request.GET.get('page', 1)
 	paginator = Paginator(posts, 2)
 	context['posts'] = paginator.page(page)
-	return render(request, 'index.html', context)
+	context['tag'] = tag
+	return render(request, 'tag.html', context)
