@@ -36,8 +36,8 @@
           <a class="nav-link text-center" href="{% url 'index' %}"><i class="fa fa-home"></i> HOME</a>
         </li>
         {% for category in categories %}
-          <li class="nav-item">  
-            <a class="nav-link text-uppercase text-center" href="{% url 'category' category=category %}"><i class="fa fa-circle"></i> {{category.name}}</a>
+          <li class="nav-item">
+            <a class="nav-link text-uppercase text-center" href="{% url 'category' category=category %}"><i class="{{category.icon}}"></i> {{category.name}}</a>
           </li>
         {% endfor %}
         {% if user.is_authenticated %}

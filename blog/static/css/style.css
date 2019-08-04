@@ -44,6 +44,6 @@ input.form-control{
 }
 
 .bg-django{
-	background: #417690;
+	background: #417690!important;
 	color: white!important;
 }
