@@ -43,7 +43,8 @@ def categoryPosts(request, category):
 	page = request.GET.get('page', 1)
 	paginator = Paginator(context['posts'], 2)
 	context['posts'] = paginator.page(page)
-	return render(request, 'index.html', context)
+	context['category'] = category
+	return render(request, 'category.html', context)
 
 def userSignup(request):
 	context = request.context
@@ -99,10 +100,9 @@ def search(request):
 	context = request.context
 	word = request.GET['word']
 	posts = Post.objects.filter(Q(content__icontains=word) | Q(title__icontains=word)).order_by('-views')[:20]
-	context['posts'] = posts
 	context['word'] = word
 	page = request.GET.get('page', 1)
-	paginator = Paginator(context['posts'], 2)
+	paginator = Paginator(posts, 2)
 	context['posts'] = paginator.page(page)
 	return render(request, 'search.html', context)
 
@@ -118,8 +118,7 @@ def tagPosts(request, tag):
 	context = request.context
 	tag = Tag.objects.get(name=tag)
 	posts = tag.posts.all()
-	context['posts'] = posts
 	page = request.GET.get('page', 1)
-	paginator = Paginator(context['posts'], 2)
+	paginator = Paginator(posts, 2)
 	context['posts'] = paginator.page(page)
 	return render(request, 'index.html', context)
