@@ -12,6 +12,7 @@ def index(request):
 	page = request.GET.get('page', 1)
 	paginator = Paginator(context['posts'], 2)
 	context['posts'] = paginator.page(page)
+	context['title'] = 'The times blog'
 	return render(request, 'index.html', context)
 
 def singlePost(request, id):
@@ -20,21 +21,9 @@ def singlePost(request, id):
 	post.views = post.views + 1
 	post.save()
 	context['post'] = post
+	context['title'] = post.title
 	return render(request, 
 		'posts/single.html', context)
-
-def siteAdmin(request):
-	context = request.context
-	if not request.user.is_authenticated:
-		return redirect('/admin/login/?next=/site/admin')
-	return render(request, 'admin/posts.html', context)
-
-def posts(request):
-	context = request.context
-	if not request.user.is_authenticated:
-		return redirect('index')
-	return render(request, 
-		'admin/posts.html', context)
 
 def categoryPosts(request, category):
 	context = request.context
@@ -48,10 +37,12 @@ def categoryPosts(request, category):
 	paginator = Paginator(posts, 2)
 	context['posts'] = paginator.page(page)
 	context['category'] = category
+	context['title'] = 'Posts on ' + category.name
 	return render(request, 'category.html', context)
 
 def userSignup(request):
 	context = request.context
+	context['title'] = 'Sign Up'
 	if request.user.is_authenticated: 
 		return redirect('index')
 	if request.method == 'GET':
@@ -74,6 +65,7 @@ def userSignup(request):
 
 def userLogin(request):
 	context = request.context
+	context['title'] = 'Log In'
 	if request.user.is_authenticated:
 		return redirect('index')
 	if request.method == 'GET':
@@ -98,6 +90,7 @@ def profile(request):
 	if not request.user.is_authenticated:
 		return redirect('/accounts/login/?next=/profile')
 	context = request.context
+	context['title'] = 'Your profile'
 	return render(request, 'profile.html', context)
 
 def search(request):
@@ -105,6 +98,7 @@ def search(request):
 	word = request.GET['word']
 	posts = Post.objects.filter(Q(content__icontains=word) | Q(title__icontains=word)).order_by('-views')[:20]
 	context['word'] = word
+	context['title'] = 'search for ' + word
 	page = request.GET.get('page', 1)
 	paginator = Paginator(posts, 2)
 	context['posts'] = paginator.page(page)
@@ -133,6 +127,7 @@ def tagPosts(request, tag):
 	paginator = Paginator(posts, 2)
 	context['posts'] = paginator.page(page)
 	context['tag'] = tag
+	context['title'] = 'Posts related to ' + tag.name
 	return render(request, 'tag.html', context)
 
 def error_404(request, message):
@@ -141,6 +136,7 @@ def error_404(request, message):
 
 def archive(request, year, month):
 	context = request.context
+	context['title'] = 'Posts on ' + str(year) + ' ' + str(month)
 	try:
 		posts = Post.objects.filter(published__year=year, published__month=month)
 	except Exception:
@@ -158,4 +154,5 @@ def authorPosts(request, author):
 	paginator = Paginator(posts, 2)
 	context['posts'] = paginator.page(page)
 	context['author'] = author
+	context['title'] = 'Posts by ' + author.username
 	return render(request, 'author.html', context)
