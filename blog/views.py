@@ -137,3 +137,14 @@ def tagPosts(request, tag):
 def error_404(request, message):
 	context = request.context
 	return render(request, '404.html', context)
+
+def archive(request, year, month):
+	context = request.context
+	try:
+		posts = Post.objects.filter(published__year=year, published__month=month)
+	except Exception:
+		posts = []
+	page = request.GET.get('page', 1)
+	paginator = Paginator(posts, 2)
+	context['posts'] = paginator.page(page)
+	return render(request, 'index.html', context)
