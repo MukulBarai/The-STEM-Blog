@@ -25,12 +25,12 @@
                   <i class="far fa-clock"></i> {{post.published}}
                 </div>
                 <div class="mr-2">
-                  <a href=""><i class="fa fa-user"></i> {{post.author}}</a>
+                  <a href="{% url 'author' post.author %}"}><i class="fa fa-user"></i> {{post.author}}</a>
                 </div>
                 <div class="mr-2">
                   {% for tag in post.tags.all %}
                     <span class="font-bold">.</span>
-                    <a href="">{{tag.name}}</a>
+                    <a href="{% url 'tags' tag.name %}">{{tag.name}}</a>
                   {% endfor %}
                 </div>
                 <div>

@@ -3,6 +3,7 @@ from django.contrib.auth import login, logout, authenticate
 from .models import Post, Category, Tag, Comment
 from .forms import SignUpForm, LoginForm
 from django.core.paginator import Paginator
+from django.contrib.auth.models import User
 from django import forms
 from django.db.models import Q
 
@@ -148,3 +149,13 @@ def archive(request, year, month):
 	paginator = Paginator(posts, 2)
 	context['posts'] = paginator.page(page)
 	return render(request, 'index.html', context)
+
+def authorPosts(request, author):
+	context = request.context
+	author = get_object_or_404(User, username=author)
+	posts = Post.objects.filter(author=author)
+	page = request.GET.get('page', 1)
+	paginator = Paginator(posts, 2)
+	context['posts'] = paginator.page(page)
+	context['author'] = author
+	return render(request, 'author.html', context)

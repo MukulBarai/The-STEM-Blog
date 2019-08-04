@@ -12,5 +12,6 @@ urlpatterns = [
 	path('posts/<int:year>/<int:month>/', views.archive, name='archive'),
 	path('categories/<str:category>/', views.categoryPosts, name='category'),
 	path('tags/<str:tag>/', views.tagPosts, name='tags'),
-	path('posts/<int:id>/addcomment/', views.addComment, name='addcomment')
+	path('posts/<int:id>/addcomment/', views.addComment, name='addcomment'),
+	path('posts/author/<str:author>/', views.authorPosts, name='author'),
 ]

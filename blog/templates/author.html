@@ -9,7 +9,7 @@
         {% if posts %}
           <div class="card mb-4 alert-info">
             <div class="card-body py-2">
-              <h4 class="mb-0">{{posts.count}} Search result for "{{word}}"</h4>
+              <h4 class="mb-0">Posts by <span>{{author}}</span></h4>
             </div>
           </div>
           {% for post in posts %}
@@ -42,7 +42,7 @@
         {% else %}
           <div class="card mb-4 alert-info">
             <div class="card-body py-2">
-              <h4 class="text-center mb-0">No results found for "{{word}}"</h4>
+              <h4 class="text-center mb-0">No posts by {{author}}</h4>
             </div>
           </div>
         {% endif %}
@@ -52,21 +52,21 @@
           <ul class="pagination justify-content-center mb-4">
             {% if posts.has_previous %}
             <li class="page-item">
-              <a class="page-link" href="?word={{word}}&page={{posts.previous_page_number}}">&laquo; Older</a>
+              <a class="page-link" href="?page={{posts.previous_page_number}}">&laquo; Older</a>
             </li>
             {% else %}
               <li><span class=" page-link disabled">&laquo; Older</span></li>
             {% endif %}
             {% for page in posts.paginator.page_range %}
               {% if posts.number == page %}
-              <li><a class="page-link text-danger" href="?word={{word}}&page={{page}}">{{page}}</a></li>
+              <li><a class="page-link text-danger" href="?page={{page}}">{{page}}</a></li>
               {% else %}
-                <li><a class="page-link" href="?word={{word}}&page={{page}}">{{page}}</a></li>
+                <li><a class="page-link" href="?page={{page}}">{{page}}</a></li>
               {% endif %}
             {% endfor %}
             {% if posts.has_next %}
               <li class="page-item">
-                <a class="page-link" href="?word={{word}}&page={{posts.next_page_number}}">Newer &raquo;</a>
+                <a class="page-link" href="?page={{posts.next_page_number}}">Newer &raquo;</a>
               </li>
             {% else %}
               <li><span class="disabled page-link">Newer&raquo;</span></li>
