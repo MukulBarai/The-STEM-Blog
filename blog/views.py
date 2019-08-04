@@ -102,7 +102,7 @@ def profile(request):
         email = request.POST.get('email')
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
-        user = User.objects.get(username=username)
+        user = User.objects.get(pk=request.user.id)
         user.username = username
         user.email = email
         user.first_name = first_name
