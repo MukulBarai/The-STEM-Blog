@@ -17,8 +17,7 @@ def index(request):
 
 def getRelatedPosts(post):
     tags = post.tags.all()
-    posts = Post.objects.filter(tags__in=tags)
-        .exclude(pk=post.id).distinct()
+    posts = Post.objects.filter(tags__in=tags).exclude(pk=post.id).distinct()
     return posts
 
 def singlePost(request, id):
