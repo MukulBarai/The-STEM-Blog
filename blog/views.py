@@ -7,10 +7,13 @@ from django.contrib.auth.models import User
 from django import forms
 from django.db.models import Q
 
+def getPerPage():
+    return 4
+
 def index(request):
     context = request.context
     page = request.GET.get('page', 1)
-    paginator = Paginator(context['posts'], 2)
+    paginator = Paginator(context['posts'], getPerPage())
     context['posts'] = paginator.page(page)
     context['title'] = 'The times blog'
     return render(request, 'index.html', context)
@@ -39,7 +42,7 @@ def categoryPosts(request, category):
     else:
         posts = Post.objects.filter(category=category)
     page = request.GET.get('page', 1)
-    paginator = Paginator(posts, 2)
+    paginator = Paginator(posts, getPerPage())
     context['posts'] = paginator.page(page)
     context['category'] = category
     context['title'] = 'Posts on ' + category.name
@@ -105,7 +108,7 @@ def search(request):
     context['word'] = word
     context['title'] = 'search for ' + word
     page = request.GET.get('page', 1)
-    paginator = Paginator(posts, 2)
+    paginator = Paginator(posts, getPerPage())
     context['posts'] = paginator.page(page)
     return render(request, 'search.html', context)
 
@@ -129,7 +132,7 @@ def tagPosts(request, tag):
     else:
         posts = tag.posts.all()
     page = request.GET.get('page', 1)
-    paginator = Paginator(posts, 2)
+    paginator = Paginator(posts, getPerPage())
     context['posts'] = paginator.page(page)
     context['tag'] = tag
     context['title'] = 'Posts related to ' + tag.name
@@ -156,7 +159,7 @@ def archive(request, year, month):
     except Exception:
         posts = []
     page = request.GET.get('page', 1)
-    paginator = Paginator(posts, 2)
+    paginator = Paginator(posts, getPerPage())
     context['posts'] = paginator.page(page)
     return render(request, 'index.html', context)
 
@@ -165,7 +168,7 @@ def authorPosts(request, author):
     author = get_object_or_404(User, username=author)
     posts = Post.objects.filter(author=author)
     page = request.GET.get('page', 1)
-    paginator = Paginator(posts, 2)
+    paginator = Paginator(posts, getPerPage())
     context['posts'] = paginator.page(page)
     context['author'] = author
     context['title'] = 'Posts by ' + author.username
