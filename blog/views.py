@@ -133,3 +133,7 @@ def tagPosts(request, tag):
 	context['posts'] = paginator.page(page)
 	context['tag'] = tag
 	return render(request, 'tag.html', context)
+
+def error_404(request, message):
+	context = request.context
+	return render(request, '404.html', context)

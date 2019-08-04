@@ -6,12 +6,12 @@
     <div class="row">
       <!-- Blog Entries Column -->
       <div class="col-md-8 my-4">
-        {% if posts %}
-          <div class="card mb-4 alert-info">
-            <div class="card-body py-2">
-              <h4 class="mb-0">Posts about <span class="text-uppercase">{{tag}}</span></h4>
-            </div>
+      	<div class="card mb-4 alert-info">
+          <div class="card-body py-2">
+            <h4 class="text-center mb-0">404 not found! Your are trying to access a wrong page</h4>
           </div>
+        </div>
+        {% if posts %}
           {% for post in posts %}
             <div class="card mb-4">
               <img class="card-img-top" style="max-height: 300px;" src="{{post.image}}" alt="Card image cap">
@@ -34,12 +34,6 @@
               </div>
             </div>
           {% endfor %}
-        {% else %}
-          <div class="card mb-4 alert-info">
-            <div class="card-body py-2">
-              <h4 class="text-center m-0">No posts about <span class="text-uppercase">{{tag}}</span></h4>
-            </div>
-          </div>
         {% endif %}
 
         <!-- Pagination -->

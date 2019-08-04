@@ -8,8 +8,8 @@
       <div class="col-md-8 my-4">
         {% if posts %}
           <div class="card mb-4 alert-info">
-            <div class="card-body">
-              <h4>Posts on <span class="text-uppercase">{{category}}</span></h4>
+            <div class="card-body py-2">
+              <h4 class="mb-0">Posts on <span class="text-uppercase">{{category}}</span></h4>
             </div>
           </div>
           {% for post in posts %}
@@ -36,8 +36,8 @@
           {% endfor %}
         {% else %}
           <div class="card mb-4 alert-info">
-            <div class="card-body">
-              <h4 class="text-center">No posts on <span class="text-uppercase">{{category}}</span></h4>
+            <div class="card-body py-2">
+              <h4 class="text-center mb-0">No posts on <span class="text-uppercase">{{category}}</span></h4>
             </div>
           </div>
         {% endif %}
