@@ -13,9 +13,11 @@
             <form method="post" accept="{% url 'login' %}?next=/site/admin">
               {% csrf_token %}
               <div class="form-group">
+                <p class="mb-0 text-secondary font-bold">Username:</p>
                 <input type="text" class="form-control" name="username">
               </div>
               <div class="form-group">
+                <p class="mb-0 text-secondary font-bold">Password:</p>
                 <input type="password" class="form-control" name="password">
               </div>
               <div class="form-group">

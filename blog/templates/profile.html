@@ -8,7 +8,7 @@
       <div class="col-md-12 my-4">
         <h4 class="bg-django card-header">Change User</h4>
           <div class="card mb-4">
-            <div class="card-body" style="overflow-x: auto;">
+            <div class="card-body">
               <form method="post" action="{% url 'profile' %}">
                 {% csrf_token %}
                 <table class="table table-bordered">
@@ -18,7 +18,7 @@
                   </tr>
                   <tr>
                     <td>Password</td>
-                    <td>{{user.password}}</td>
+                    <td>{{user.password|slice:'0:30'}}...</td>
                   </tr>
                   <tr>
                     <td>Email</td>
