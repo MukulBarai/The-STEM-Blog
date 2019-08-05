@@ -9,43 +9,41 @@
         <h4 class="bg-django card-header">Change User</h4>
           <div class="card mb-4">
             <div class="card-body">
+              {% if errors %}
+                <p class="text-danger p-2 font-weight-bold" style="border: 1px solid red; border-radius: 5px!important;">{{errors}}</p>
+              {% endif %}
               <form method="post" action="{% url 'profile' %}">
                 {% csrf_token %}
                 <table class="table table-bordered">
                   <tr>
                     <td>Username</td>
-                    <td><input type="text" class="form-control" value="{{user.username}}" name="username"></td>
-                  </tr>
-                  <tr>
-                    <td>Password</td>
-                    <td>{{user.password|slice:'0:30'}}...</td>
+                    <td><input type="text" name="username" value="{{user.username}}"></td>
                   </tr>
                   <tr>
                     <td>Email</td>
-                    <td><input type="text" class="form-control" value="{{user.email}}" name="email"></td>
+                    <td><input type="email" name="email" value="{{user.email}}"></td>
                   </tr>
                   <tr>
                     <td>First Name</td>
-                    <td><input type="text" class="form-control" value="{{user.first_name}}" name="first_name"></td>
+                    <td><input type="text" name="first_name" value="{{user.first_name}}"></td>
                   </tr>
                   <tr>
-                    <td>Last Name</td>
-                    <td><input type="text" class="form-control" value="{{user.last_name}}" name="last_name"></td>
+                    <td>First Name</td>
+                    <td><input type="text" name="last_name" value="{{user.last_name}}"></td>
                   </tr>
                   <tr>
-                    <td>Last login</td>
-                    <td>{{user.last_login}}</td>
+                    <td>Date Joined</td>
+                    <td><input type="text" name="date_joined" disabled="" value="{{user.date_joined}}"></td>
                   </tr>
                   <tr>
-                    <td>Date joined</td>
-                    <td>{{user.date_joined}}</td>
-                  </tr>
-                  <tr>
-                    <td>Password</td>
-                    <td><a href="{% url 'password_change' %}">Change Password</a></td>
+                    <td>Last Login</td>
+                    <td><input type="text" name="last_login" disabled="" value="{{user.last_login}}"></td>
                   </tr>
                 </table>
-                <p class="text-right"><button type="submit" class="btn bg-django">Update</button></p>
+                <div class="d-flex">
+                  <p class="flex-fill"><a href="{% url 'password_change' %}">Change Password</a></p>
+                  <p class="text-right flex-fill mb-0"><button type="submit" class="btn bg-django">Update</button></p>
+                </div>
               </form>
             </div>
           </div>

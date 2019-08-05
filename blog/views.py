@@ -66,7 +66,7 @@ def userSignup(request):
     password = form.cleaned_data.get('password1')
     user = authenticate(username=username, password=password)
     if user == None:
-        context.form.non_field_errors = 'Cannot login new, please try again later'
+        context['form'].non_field_errors = 'Cannot login new, please try again later'
         return render(request, 'registration/signup.html', context)
     login(request, user)
     return redirect('index')
@@ -97,20 +97,20 @@ def userLogin(request):
 def profile(request):
     if not request.user.is_authenticated:
         return redirect('/accounts/login/?next=/profile')
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        email = request.POST.get('email')
-        first_name = request.POST.get('first_name')
-        last_name = request.POST.get('last_name')
-        user = User.objects.get(pk=request.user.id)
-        user.username = username
-        user.email = email
-        user.first_name = first_name
-        user.last_name = last_name
-        user.save()
-        return redirect('profile')
     context = request.context
     context['title'] = 'Your profile'
+    if request.method == 'POST':
+        user = User.objects.get(pk=request.user.id)
+        user.username = request.POST.get('username')
+        user.email = request.POST.get('email')
+        user.first_name = request.POST.get('first_name')
+        user.last_name = request.POST.get('last_name')
+        try:
+            user.save()
+        except Exception as e:
+            context['errors'] = e
+            return render(request, 'profile.html', context)
+        return redirect('profile')
     return render(request, 'profile.html', context)
 
 def search(request):

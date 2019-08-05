@@ -1,7 +1,6 @@
 
 $(document).ready(function(){
-	$('.form-group input').addClass('form-control');
-	$('.form-group textarea').addClass('form-control');
-	$('.form-group select').addClass('form-control');
-	$('.form-group textarea').attr('row', '5');
+	$('input').addClass('form-control');
+	$('textarea').addClass('form-control');
+	$('select').addClass('form-control');
 })
