@@ -10,9 +10,6 @@
             {% if form.non_field_errors %}
               <p class="text-danger p-2 font-weight-bold" style="border: 1px solid red; border-radius: 5px!important;">{{form.non_field_errors}}</p>
             {% endif %}
-            {% for field in form %}
-              <span class="text-danger d-inline list-unstyled">{{field.errors|striptags}} in {{field.name}}</span>
-            {% endfor %}
             <form method="post" accept="{% url 'signup' %}?next=/site/admin">
               {% csrf_token %}
               {% for field in form %}
