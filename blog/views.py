@@ -4,6 +4,7 @@ from .models import Post, Category, Tag, Comment
 from .forms import SignUpForm, LoginForm, ProfileForm
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User
+from django.forms.models import model_to_dict
 from django import forms
 from django.db.models import Q
 
@@ -100,7 +101,7 @@ def profile(request):
     context = request.context
     context['title'] = 'Your profile'
     if request.method == 'GET':
-        form = ProfileForm(instance=request.user)
+        form = ProfileForm(model_to_dict(request.user))
         context['form'] = form
         return render(request, 'profile.html', context)
     form = ProfileForm(request.POST)
@@ -108,6 +109,10 @@ def profile(request):
         context['form'] = form
         return render(request, 'profile.html', context)
     username = form.cleaned_data.get('username')
+    if User.objects.filter(username=username).exclude(pk=request.user.id).exists():
+        form.non_field_errors = 'This username already exists'
+        context['form'] = form
+        return render(request, 'profile.html', context)
     email = form.cleaned_data.get('email')
     first_name = form.cleaned_data.get('first_name')
     last_name = form.cleaned_data.get('last_name')

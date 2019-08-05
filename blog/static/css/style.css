@@ -47,3 +47,11 @@ input.form-control{
 	background: #417690!important;
 	color: white!important;
 }
+
+.form-warning{
+	border: 1px solid red; 
+	border-radius: 5px!important;
+	padding: 10px;
+	font-weight: bold;
+	color: red;
+}
