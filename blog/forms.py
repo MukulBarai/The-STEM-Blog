@@ -27,3 +27,9 @@ class ProfileForm(ModelForm):
     class Meta:
         model = User
         fields = ('username', 'email', 'first_name', 'last_name', 'date_joined', 'last_login')
+
+    def clean_username(self):
+        username = self.cleaned_data.get('username')
+        if not User.objects.filter(username=username).exists():
+            raise forms.ValidationError("This username already exists")
+        return username

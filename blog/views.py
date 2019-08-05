@@ -108,10 +108,6 @@ def profile(request):
         context['form'] = form
         return render(request, 'profile.html', context)
     username = form.cleaned_data.get('username')
-    if User.objects.filter(username=username).exclude(pk=request.user.id):
-        form.non_field_errors = 'User with this username already exists'
-        context['form'] = form
-        return render(request, 'profile.html', context)
     email = form.cleaned_data.get('email')
     first_name = form.cleaned_data.get('first_name')
     last_name = form.cleaned_data.get('last_name')
