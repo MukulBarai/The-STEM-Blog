@@ -100,6 +100,8 @@ def profile(request):
     context = request.context
     context['title'] = 'Your profile'
     if request.method == 'GET':
+        form = ProfileForm(instance=request.user)
+        context['form'] = form
         return render(request, 'profile.html', context)
     form = ProfileForm(request.POST)
     if not form.is_valid():

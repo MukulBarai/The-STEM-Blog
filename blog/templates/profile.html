@@ -14,32 +14,12 @@
               {% endif %}
               <form method="post" action="{% url 'profile' %}">
                 {% csrf_token %}
-                <table class="table table-bordered">
-                  <tr>
-                    <td>Username</td>
-                    <td><input type="text" name="username" value="{{user.username}}"></td>
-                  </tr>
-                  <tr>
-                    <td>Email</td>
-                    <td><input type="email" name="email" value="{{user.email}}"></td>
-                  </tr>
-                  <tr>
-                    <td>First Name</td>
-                    <td><input type="text" name="first_name" value="{{user.first_name}}"></td>
-                  </tr>
-                  <tr>
-                    <td>Last Name</td>
-                    <td><input type="text" name="last_name" value="{{user.last_name}}"></td>
-                  </tr>
-                  <tr>
-                    <td>Date Joined</td>
-                    <td><input type="text" name="date_joined" disabled="" value="{{user.date_joined}}"></td>
-                  </tr>
-                  <tr>
-                    <td>Last Login</td>
-                    <td><input type="text" name="last_login" disabled="" value="{{user.last_login}}"></td>
-                  </tr>
-                </table>
+                {% for field in form %}
+                  <div class="form-group">
+                    <p class="mb-0 text-secondary font-bold">{{field.label}}: <span class="text-danger">{{field.errors|striptags}}</span></p>
+                    {{field}}
+                  </div>
+                {% endfor %}
                 <div class="d-flex">
                   <p class="flex-fill"><a href="{% url 'password_change' %}">Change Password</a></p>
                   <p class="text-right flex-fill mb-0"><button type="submit" class="btn bg-django">Update</button></p>
