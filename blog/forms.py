@@ -16,9 +16,8 @@ class LoginForm(forms.Form):
     username = forms.CharField(max_length=30)
     password = forms.CharField(max_length=30, widget=forms.PasswordInput)
 
-class ProfileForm(ModelForm):
-    date_joined = forms.DateTimeField(disabled=True)
-    last_login = forms.DateTimeField(disabled=True)
-    class Meta:
-        model = User 
-        fields = ('username', 'first_name', 'last_name', 'email', 'date_joined', 'last_login')
+class ProfileForm(forms.Form):
+    username = forms.CharField(max_length=100)
+    email = forms.EmailField(required=True)
+    first_name = forms.CharField(max_length=100)
+    last_name = forms.CharField(max_length=100)

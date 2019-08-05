@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, logout, authenticate
 from .models import Post, Category, Tag, Comment
-from .forms import SignUpForm, LoginForm
+from .forms import SignUpForm, LoginForm, ProfileForm
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User
 from django import forms
@@ -99,19 +99,27 @@ def profile(request):
         return redirect('/accounts/login/?next=/profile')
     context = request.context
     context['title'] = 'Your profile'
-    if request.method == 'POST':
-        user = User.objects.get(pk=request.user.id)
-        user.username = request.POST.get('username')
-        user.email = request.POST.get('email')
-        user.first_name = request.POST.get('first_name')
-        user.last_name = request.POST.get('last_name')
-        try:
-            user.save()
-        except Exception as e:
-            context['errors'] = e
-            return render(request, 'profile.html', context)
-        return redirect('profile')
-    return render(request, 'profile.html', context)
+    if request.method == 'GET':
+        return render(request, 'profile.html', context)
+    form = ProfileForm(request.POST)
+    if not form.is_valid():
+        context['form'] = form
+        return render(request, 'profile.html', context)
+    username = form.cleaned_data.get('username')
+    if User.objects.filter(username=username).exclude(pk=request.user.id):
+        form.non_field_errors = 'User with this username already exists'
+        context['form'] = form
+        return render(request, 'profile.html', context)
+    email = form.cleaned_data.get('email')
+    first_name = form.cleaned_data.get('first_name')
+    last_name = form.cleaned_data.get('last_name')
+    user = User.objects.get(pk=request.user.id)
+    user.username = username
+    user.email = email
+    user.first_name = first_name
+    user.last_name = last_name
+    user.save()
+    return redirect('profile')
 
 def search(request):
     context = request.context
