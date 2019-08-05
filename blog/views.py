@@ -115,12 +115,8 @@ def profile(request):
     email = form.cleaned_data.get('email')
     first_name = form.cleaned_data.get('first_name')
     last_name = form.cleaned_data.get('last_name')
-    user = User.objects.get(pk=request.user.id)
-    user.username = username
-    user.email = email
-    user.first_name = first_name
-    user.last_name = last_name
-    user.save()
+    User.objects.filter(pk=request.user.id).update(username=username, 
+        email=email, first_name=first_name, last_name=last_name)
     return redirect('profile')
 
 def search(request):
