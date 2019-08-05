@@ -35,17 +35,17 @@ def singlePost(request, id):
 
 def categoryPosts(request, category):
     context = request.context
+    context['title'] = 'Posts on ' + category
     try:
-        category = Category.objects.get(name=category)
+        newCategory = Category.objects.get(name=category)
     except Exception:
         posts = []
     else:
-        posts = Post.objects.filter(category=category)
+        posts = Post.objects.filter(category=newCategory)
     page = request.GET.get('page', 1)
     paginator = Paginator(posts, getPerPage())
     context['posts'] = paginator.page(page)
     context['category'] = category
-    context['title'] = 'Posts on ' + category.name
     return render(request, 'category.html', context)
 
 def userSignup(request):
@@ -145,17 +145,17 @@ def addComment(request, id):
 
 def tagPosts(request, tag):
     context = request.context
+    context['title'] = 'Posts related to ' + tag
     try:
-        tag = Tag.objects.get(name=tag)
+        newTag = Tag.objects.get(name=tag)
     except Exception:
         posts = []
     else:
-        posts = tag.posts.all()
+        posts = newTag.posts.all()
     page = request.GET.get('page', 1)
     paginator = Paginator(posts, getPerPage())
     context['posts'] = paginator.page(page)
     context['tag'] = tag
-    context['title'] = 'Posts related to ' + tag.name
     return render(request, 'tag.html', context)
 
 def error_404(request, message):
@@ -185,11 +185,11 @@ def archive(request, year, month):
 
 def authorPosts(request, author):
     context = request.context
-    author = get_object_or_404(User, username=author)
-    posts = Post.objects.filter(author=author)
+    context['title'] = 'Posts by ' + author
+    newAuthor = get_object_or_404(User, username=author)
+    posts = Post.objects.filter(author=newAuthor)
     page = request.GET.get('page', 1)
     paginator = Paginator(posts, getPerPage())
     context['posts'] = paginator.page(page)
     context['author'] = author
-    context['title'] = 'Posts by ' + author.username
     return render(request, 'author.html', context)
