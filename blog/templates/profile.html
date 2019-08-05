@@ -13,7 +13,7 @@
                 <p class="text-danger p-2 font-weight-bold" style="border: 1px solid red; border-radius: 5px!important;">{{form.non_field_errors}}</p>
               {% endif %}
               {% for field in form %}
-                {{field.errors}}
+                <span class="text-danger d-inline list-unstyled">{{field.errors|striptags}} in {{field.name}}</span>
               {% endfor %}
               <form method="post" action="{% url 'profile' %}">
                 {% csrf_token %}
