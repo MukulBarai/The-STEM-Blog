@@ -87,9 +87,9 @@ def userLogin(request):
     username = form.cleaned_data.get('username')
     password = form.cleaned_data.get('password')
     user = authenticate(username=username, password=password)
-    print(user)
     if user == None:
-        context['errors'] = 'Username or Password is wrong'
+        form.non_field_errors = 'Username or Password is wrong'
+        context['form'] = form
         return render(request, 'registration/login.html', context)
     login(request, user)
     return redirect('index')
