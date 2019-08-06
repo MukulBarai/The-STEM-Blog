@@ -12,12 +12,17 @@ def getArchives():
         'April', 'May', 'June', 'July', 'August', 
         'September', 'October', 'November', 'December'
     ]
-    for year in (dateFrom.year, dateTo.year):
+    for year in (dateFrom.year, dateTo.year-1):
         for i in range(12):
             archives.append({
                 'year': year, 'month': i+1, 
                 'yearmon': str(year) + " " + months[i]
             })
+    for i in range(dateTo.month):
+        archives.append({
+            'year': dateTo.year, 'month': i+1,
+            'yearmon': str(dateTo.year) + " " + months[i]
+        })
     return archives
 
 
