@@ -39,7 +39,7 @@
     <div class="card-body" style="max-height: 400px; overflow-y: scroll;">
       <ul class="navbar-nav">
         {% for archive in archives %}
-          <li class="nav-item">
+          <li class="nav-item mb-1 pl-2" style="background: #f1f1f1;">
             <a href="{% url 'archive' archive.year archive.month %}" class="nav-link"><i class="far fa-clock"></i> {{archive.yearmon}}</a>
           </li>
         {% endfor %}
