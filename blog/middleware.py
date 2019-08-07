@@ -1,7 +1,7 @@
 from .models import Post, Category, Tag
 from bs4 import BeautifulSoup
 from datetime import datetime
-
+from django.urls import resolve
 
 def basicMiddleware(get_response):
     def getArchives():
@@ -41,9 +41,12 @@ def basicMiddleware(get_response):
         return response
     return middleware
 
-#Middleware for editing self user
-def userEditMiddleware(get_response):
+def adminMiddleware(get_response):
     def middleware(request):
-        request.is_stff = False
+        urlName = resolve(request.path_info).url_name
+        if urlName == 'auth_user_change':
+            pass
+            # request.user.is_superuser = False
         response = get_response(request)
+        return response
     return middleware
