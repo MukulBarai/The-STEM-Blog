@@ -23,7 +23,7 @@ def getArchives():
 
 def basicMiddleware(get_response):
     def middleware(request):
-        posts = Post.objects.all()
+        posts = Post.objects.order_by('-pk').all()
         popular = Post.objects.order_by('-views')[:20]
         categories = Category.objects.all()
         latests = Post.objects.order_by('-pk')[:20]
