@@ -20,7 +20,7 @@ def basicMiddleware(get_response):
                     'year': year, 'month': i+1, 
                     'yearmon': str(year) + " " + months[i]
                 })
-        return archives
+        return archives[::-1]
 
 
     def middleware(request):
@@ -39,4 +39,11 @@ def basicMiddleware(get_response):
         request.context = context
         response = get_response(request)
         return response
+    return middleware
+
+#Middleware for editing self user
+def userEditMiddleware(get_response):
+    def middleware(request):
+        request.is_stff = False
+        response = get_response(request)
     return middleware
