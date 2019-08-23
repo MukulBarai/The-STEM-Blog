@@ -132,15 +132,17 @@ def search(request):
     return render(request, 'search.html', context)
 
 def addComment(request, id):
+    if request.method == 'GET':
+        return redirect('singlepost', id=post.id, slug=post.slug)
     context = request.context
     content = request.POST['content']
     author = request.user if request.user.is_authenticated else 'Guest'
     try:
         post = Post.objects.get(pk=id)
     except Exception:
-        return redirect('singlepost', id=post.id)
+        return redirect('singlepost', id=post.id, slug=post.slug)
     Comment.objects.create(content=content, author=author, post=post)
-    return redirect('singlepost', id=post.id)
+    return redirect('singlepost', id=post.id, slug=post.slug)
 
 def tagPosts(request, tag):
     context = request.context

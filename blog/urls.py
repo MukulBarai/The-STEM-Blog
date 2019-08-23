@@ -8,10 +8,10 @@ urlpatterns = [
 	path('accounts/', include('django.contrib.auth.urls')),
 	path('accounts/profile/', views.profile, name='profile'),
 	path('accounts/signup/', views.userSignup, name='signup'),
-	path('posts/<int:year>/<int:month>/', views.archive, name='archive'),
+	path('posts/archive/<int:year>/<int:month>/', views.archive, name='archive'),
 	path('posts/<int:id>/<slug:slug>/', views.singlePost, name='singlepost'),
 	path('categories/<str:category>/', views.categoryPosts, name='category'),
 	path('tags/<str:tag>/', views.tagPosts, name='tags'),
-	path('posts/<int:id>/addcomment/', views.addComment, name='addcomment'),
+	path('posts/addcomment/<int:id>/', views.addComment, name='addcomment'),
 	path('posts/author/<str:author>/', views.authorPosts, name='author'),
 ]
