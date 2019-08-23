@@ -24,7 +24,7 @@ def getRelatedPosts(post):
     posts = Post.objects.filter(tags__in=tags).exclude(pk=post.id).distinct()
     return posts
 
-def singlePost(request, id):
+def singlePost(request, id, slug):
     context = request.context
     post = get_object_or_404(Post, pk=id)
     post.views = post.views + 1
