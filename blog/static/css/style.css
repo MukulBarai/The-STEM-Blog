@@ -23,10 +23,15 @@ body {
 	color: aqua!important;
 	font-weight: bold!important;
 	font-size: 12px;
+	transition: all 0.5s;
 }
 
 .navbar-bottom{
 	background: #3a7cbf!important;
+}
+
+.navbar-bottom .nav-link:hover{
+	color: #6df14c!important;
 }
 
 footer{
