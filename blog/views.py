@@ -122,7 +122,7 @@ def profile(request):
 
 def search(request):
     context = request.context
-    word = request.GET['word']
+    word = request.GET.get('word', '')
     posts = Post.objects.filter(Q(content__icontains=word) | Q(title__icontains=word)).order_by('-views')[:20]
     context['word'] = word
     context['title'] = 'search for ' + word
