@@ -55,3 +55,8 @@ input.form-control{
 	font-weight: bold;
 	color: red;
 }
+
+.sidebar{
+	position: sticky;
+	top: 0;
+}
