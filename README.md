@@ -1,11 +1,6 @@
 # TheTimesBlog
-
-A standard blog that has all the features below
-* Popular posts
-* Recent Posts
-* Archive Posts
-* Posts by author
-* Posts of a tag
-* Post by Category
-* Creating Category
-* Adding menus
+<img src="images/Screenshot(25).png">
+<img src="images/Screenshot(26).png">
+<img src="images/Screenshot(27).png">
+<img src="images/Screenshot(28).png">
+<img src="images/Screenshot(29).png">
